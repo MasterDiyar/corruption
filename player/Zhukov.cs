@@ -3,9 +3,10 @@ using System;
 
 public partial class Zhukov : Node2D
 {
+    private Sprite2D arch;
     public override void _Ready()
     {
-        
+        arch =GetNode<Sprite2D>("Arch");
     }
 
     public override void _Process(double delta)
@@ -13,7 +14,11 @@ public partial class Zhukov : Node2D
         if (Input.IsActionJustPressed("ui_select")){
             attack();
         }
-        Position = GetGlobalMousePosition();
+        Position = GetGlobalMousePosition() - 100 * Vector2.Up;
+        
+        var angle = GetAngleTo(GetGlobalMousePosition());
+        arch.Position = Position + 100 * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        
     }
 
     public void walk(){

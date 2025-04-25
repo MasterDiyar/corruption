@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cluvddvs82a1o"]
+[gd_scene load_steps=3 format=3 uid="uid://cluvddvs82a1o"]
 
 [ext_resource type="FontFile" uid="uid://cwcsuan3qs8ii" path="res://ui/PixeloidMono.otf" id="1_bwjgb"]
+[ext_resource type="Script" uid="uid://eqey4cl7jgv1" path="res://ui/Menu.cs" id="1_udkah"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_udkah")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -22,7 +24,17 @@ text = "Title name"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 214.0
-offset_right = 134.0
-offset_bottom = 222.0
+offset_left = 33.0
+offset_top = 216.0
+offset_right = 255.0
+offset_bottom = 310.0
+text = "Play"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 333.0
+offset_right = 251.0
+offset_bottom = 425.0
+text = "Quit
+"

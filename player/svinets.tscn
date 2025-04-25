@@ -9,3 +9,9 @@
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(2, -5)
 texture = ExtResource("1_qaj6e")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -20000
+limit_top = -20000
+limit_right = 20000
+limit_bottom = 20000
