@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b87kx663qllr2"]
+
+[ext_resource type="Script" uid="uid://b35wbsm518q4h" path="res://enemy/TestSlime.cs" id="1_wjk85"]
+[ext_resource type="Texture2D" uid="uid://haqr0hot1luo" path="res://enemy/slizen.jpg" id="1_xlr6v"]
+[ext_resource type="PackedScene" uid="uid://c4tudf0jhp2ld" path="res://enemy/indicator.tscn" id="2_qyg8k"]
+[ext_resource type="PackedScene" uid="uid://dq00ilrluitk7" path="res://enemy/property.tscn" id="3_qyg8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjk85"]
+size = Vector2(235, 215)
+
+[node name="TestSlime" type="Area2D" groups=["enemies"]]
+script = ExtResource("1_wjk85")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(-2, -4)
+texture = ExtResource("1_xlr6v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, -4.5)
+shape = SubResource("RectangleShape2D_wjk85")
+
+[node name="indicator" parent="." instance=ExtResource("2_qyg8k")]
+
+[node name="property" parent="." instance=ExtResource("3_qyg8k")]
