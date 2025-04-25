@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "corruption", "corruption.csproj", "{01EC6343-805B-494C-8D10-9D986490FB2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01EC6343-805B-494C-8D10-9D986490FB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01EC6343-805B-494C-8D10-9D986490FB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01EC6343-805B-494C-8D10-9D986490FB2D}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{01EC6343-805B-494C-8D10-9D986490FB2D}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{01EC6343-805B-494C-8D10-9D986490FB2D}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{01EC6343-805B-494C-8D10-9D986490FB2D}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
