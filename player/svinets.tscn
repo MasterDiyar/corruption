@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://drw03ibna6e6h"]
+[gd_scene load_steps=3 format=3 uid="uid://drw03ibna6e6h"]
 
 [ext_resource type="Texture2D" uid="uid://snnsij1c4ctp" path="res://icon.svg" id="1_qaj6e"]
+[ext_resource type="Script" uid="uid://b338hohuyprep" path="res://player/svinets.cs" id="2_06f14"]
 
 [node name="bullet" type="Node2D"]
-
-[node name="Timer" type="Timer" parent="."]
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(2, -5)
 texture = ExtResource("1_qaj6e")
+script = ExtResource("2_06f14")
+
+[node name="Timer" type="Timer" parent="Icon"]
+one_shot = true
+autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -20000
