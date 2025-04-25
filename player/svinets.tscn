@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://drw03ibna6e6h"]
+
+[ext_resource type="Texture2D" uid="uid://snnsij1c4ctp" path="res://icon.svg" id="1_qaj6e"]
+
+[node name="bullet" type="Node2D"]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(2, -5)
+texture = ExtResource("1_qaj6e")
