@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="corruption"
-run/main_scene="uid://bu3k64ehiknbt"
+run/main_scene="uid://yhileqvptexr"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

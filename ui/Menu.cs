@@ -4,13 +4,15 @@ using System;
 public partial class Menu : Control
 {
 	Button playButton;
-	[Export] private string playNode;
+
 	public override void _Ready()
 	{
 		playButton = GetNode<Button>("Button");
 		playButton.Pressed += () =>
 		{
-			GetParent().AddChild(GD.Load<PackedScene>($"{playNode}").Instantiate());
+			
+			GetParent().AddChild(GD.Load<PackedScene>("res://map/firstmap.tscn").Instantiate());
+			GetParent().AddChild(GD.Load<PackedScene>("res://player/zhukov.tscn").Instantiate());
 			QueueFree();
 		};
 	}

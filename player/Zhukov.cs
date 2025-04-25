@@ -47,14 +47,21 @@ public partial class Zhukov : Node2D
 
         velocity = velocity.Normalized() * currentSpeed;
         Position += velocity * (float)delta;
-
+        
+        var angle = GetAngleTo(GetGlobalMousePosition());
+        arch.Position = 180 * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        arch.Rotation = angle + Mathf.Pi / 2;
     }
 
     public void attack(){
         var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate() as Node2D;
         bullet.Position = Position;
         bullet.LookAt(GetGlobalMousePosition());
-
+        if (bullet is svinets a)
+        {
+            a.Speed = 3600;
+            
+        }
         GetParent().AddChild(bullet);
 
     }
