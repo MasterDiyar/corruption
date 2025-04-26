@@ -5,17 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://cvs8vu4nsmevu" path="res://player/arch.png" id="3_32xco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_poocl"]
+size = Vector2(127, 128)
 
-[node name="Zhukov" type="Node2D"]
+[node name="Zhukov" type="CharacterBody2D"]
+safe_margin = 0.1
 script = ExtResource("1_hoh0i")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(1, -3)
 texture = ExtResource("2_32xco")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -3)
 shape = SubResource("RectangleShape2D_poocl")
 
 [node name="Timer" type="Timer" parent="."]

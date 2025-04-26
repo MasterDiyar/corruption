@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class TestSlime : Area2D
+public partial class TestSlime : RigidBody2D
 {
 	private Node root;
 	private Node2D player;
@@ -12,10 +12,10 @@ public partial class TestSlime : Area2D
 	}
 
 	
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		var difference = player.Position - Position;
-		if (difference.Length() > 200)
+		if (difference.X * difference.X + difference.Y + difference.Y > 40000)
 		{
 			var angle = GetAngleTo(player.Position);
 			Position += 5 * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));

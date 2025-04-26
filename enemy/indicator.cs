@@ -30,7 +30,7 @@ public partial class indicator : Node
 		line.SetPoints(new Vector2[] {
 			Vector2.Zero, new Vector2(150f * hp / maxhp, 0)
 		});
-		if (root is Area2D rootArea)
+		if (root is RigidBody2D rootArea)
 			line.Position = rootArea.Position + new Vector2(-100, -hei);
 	}
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Zhukov : Node2D
+public partial class Zhukov : CharacterBody2D
 {
     private Sprite2D arch;
     private int Speed = 400;
@@ -13,7 +13,7 @@ public partial class Zhukov : Node2D
         currentSpeed = Speed;
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         walk(delta);
 
@@ -45,9 +45,9 @@ public partial class Zhukov : Node2D
             currentSpeed = Speed;
         }
 
-        velocity = velocity.Normalized() * currentSpeed;
-        Position += velocity * (float)delta;
-        
+        Velocity = velocity.Normalized() * currentSpeed;
+        //Position += velocity * (float)delta;
+        MoveAndSlide();
         var angle = GetAngleTo(GetGlobalMousePosition());
         arch.Position = 180 * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         arch.Rotation = angle + Mathf.Pi / 2;

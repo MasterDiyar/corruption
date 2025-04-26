@@ -5,10 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://c4tudf0jhp2ld" path="res://enemy/indicator.tscn" id="2_qyg8k"]
 [ext_resource type="PackedScene" uid="uid://dq00ilrluitk7" path="res://enemy/property.tscn" id="3_qyg8k"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjk85"]
-size = Vector2(235, 215)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjk85"]
+radius = 97.88
 
-[node name="TestSlime" type="Area2D" groups=["enemies"]]
+[node name="TestSlime" type="RigidBody2D" groups=["enemies"]]
+gravity_scale = 0.0
 script = ExtResource("1_wjk85")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -17,8 +18,7 @@ position = Vector2(-2, -4)
 texture = ExtResource("1_xlr6v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, -4.5)
-shape = SubResource("RectangleShape2D_wjk85")
+shape = SubResource("CircleShape2D_wjk85")
 
 [node name="indicator" parent="." instance=ExtResource("2_qyg8k")]
 

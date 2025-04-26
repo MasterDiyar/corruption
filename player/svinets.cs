@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class svinets : Node2D
+public partial class svinets : Area2D
 {
     public int Speed = 900;
     public float damage = 2;
@@ -10,8 +10,7 @@ public partial class svinets : Node2D
     {
         var timer = GetNode<Timer>("Timer");
         timer.Timeout += _OnTimeout;
-        Area2D collider = GetNode<Area2D>("collider");
-        collider.AreaEntered += _OnEnter;
+        BodyEntered += _OnEnter;
     }
 
     public override void _Process(double delta)
@@ -24,7 +23,7 @@ public partial class svinets : Node2D
         QueueFree(); 
     }
 
-    private void _OnEnter(Area2D area)
+    private void _OnEnter(Node area)
     {
         
         

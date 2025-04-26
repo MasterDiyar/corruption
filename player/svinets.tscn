@@ -4,20 +4,20 @@
 [ext_resource type="Script" uid="uid://b338hohuyprep" path="res://player/svinets.cs" id="2_06f14"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06f14"]
-size = Vector2(128, 128)
+size = Vector2(64, 32)
 
-[node name="bullet" type="Node2D"]
-scale = Vector2(0.5, 0.5)
+[node name="bullet" type="Area2D"]
+modulate = Color(0.72549, 0.701961, 0.556863, 1)
 script = ExtResource("2_06f14")
 
 [node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(0.5, 0.25)
 texture = ExtResource("1_qaj6e")
-
-[node name="collider" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collider"]
-shape = SubResource("RectangleShape2D_06f14")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_06f14")
