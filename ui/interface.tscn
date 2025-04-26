@@ -141,4 +141,4 @@ texture_filter = 3
 position = Vector2(35, 192)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_cngsy")
-frame_progress = 0.440481
+frame_progress = 0.641867

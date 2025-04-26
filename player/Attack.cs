@@ -8,7 +8,7 @@ public partial class Attack : Node
 	public float hp = 10;
 	public int currentClip;
 	public bool isReloading = false;
-	public int[] inventory = { 1, 1, 1 };
+	public int[] inventory = { 1, 2, 1 };
 	public int currentInv = 0;
 	[Export]CharacterBody2D player;
     Timer reloadTimer, shootTimer;
@@ -38,7 +38,12 @@ public partial class Attack : Node
 
         if (Input.IsActionJustPressed("attack"))
         {
-            attack();
+            switch (inventory[currentInv])
+            {
+                case 1:attack(); break;
+                case 2:shotgunAttack();break;
+            }
+            
         }
 
         if (Input.IsActionJustPressed("reload"))  //reload is
@@ -51,47 +56,48 @@ public partial class Attack : Node
             currentInv += (currentInv == 2) ? -2 : 1;
         }
 	}
+
+    public void shotgunAttack(int bullet_count = 4, float angle = 0.15f)
+    {
+        for (int i = 0; i < bullet_count; i++)
+        {
+            var sharp = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
+            sharp.LookAt(player.GetGlobalMousePosition());
+            sharp.Position = player.Position;
+            sharp.Rotation += i * angle - bullet_count/2 * angle;
+            GetParent().GetParent().AddChild(sharp);
+        }
+    }
 	
 	public void attack()
         {
             if (isReloading)
-            {
                 return;
-            }
     
             if (currentClip > 0)
             {
                 currentClip--;
-    
                 var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate() as Node2D;
                 bullet.Position = player.Position;
                 bullet.LookAt(player.GetGlobalMousePosition());
     
                 if (bullet is svinets a)
-                {
                     a.Speed = 3600;
-                }
-    
+                
                 GetParent().GetParent().AddChild(bullet);
             }
             else
-            {
                 StartReload();
-            }
         }
     
         public void StartReload()
         {
             if (isReloading)
-            {
                 return;
-            }
     
             if (currentClip == clipSize || totalAmmo <= 0)
-            {
                 return;
-            }
-    
+            
             isReloading = true;
             reloadTimer.Start();
         }
@@ -113,8 +119,10 @@ public partial class Attack : Node
         private void ShootAutomatically()
         {
             if (Input.IsActionPressed("attack"))
-            {
-                attack();
-            }
+                switch (inventory[currentInv])
+                {
+                    case 1:attack(); break;
+                    case 2:shotgunAttack();break;
+                }
         }
 }

@@ -31,6 +31,9 @@ public partial class Interface : Control
 					if (a.currentClip == 0)item.Texture = GD.Load<Texture2D>("res://enemy/ak47bez.png");
 					else item.Texture = GD.Load<Texture2D>("res://enemy/ak47.png");
 					break;
+				case 2:
+					item.Texture = GD.Load<Texture2D>("res://enemy/shotgun.png");
+					break;
 			}
 		}
 
