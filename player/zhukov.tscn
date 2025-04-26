@@ -38,3 +38,7 @@ offset_left = -960.0
 offset_top = -540.0
 offset_right = -960.0
 offset_bottom = -540.0
+
+[node name="ShotgunCooldownTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true

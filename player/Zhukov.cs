@@ -7,12 +7,24 @@ public partial class Zhukov : CharacterBody2D
     private int Speed = 400;
     private int RunSpeed = 600;
     private int currentSpeed;
-    public int clipSize = 8;
-    public int totalAmmo = 32;
+    public int rifleClipSize = 8;
+    public int rifleTotalAmmo = 32;
+
+    public int shotgunClipSize = 6;
+    public int shotgunTotalAmmo = 24;
+    public float shotgunFireRate = 0.8f;
+    public float shotgunReloadTime = 4.0f;
     public float hp = 10;
+    public int clipSize;
+    public int totalAmmo;
     public int currentClip;
+    private int rifleCurrentAmmo;
+    private int rifleCurrentClip;
+    private int shotgunCurrentAmmo;
+    private int shotgunCurrentClip;
     private bool isReloading = false;
-    public int[] inventory = { 1, 1, 1 };
+    private bool isShotgunCoolingDown = false;
+    public int[] inventory = { 1, 2, 1 };
     public int currentInv = 0;
 
     private bool isDashing = false;
@@ -27,13 +39,24 @@ public partial class Zhukov : CharacterBody2D
     {
         arch = GetNode<Sprite2D>("Arch");
         currentSpeed = Speed;
-        currentClip = clipSize;
+        rifleCurrentAmmo = rifleTotalAmmo;
+        rifleCurrentClip = rifleClipSize;
+
+        shotgunCurrentAmmo = shotgunTotalAmmo;
+        shotgunCurrentClip = shotgunClipSize;
+
+        clipSize = rifleClipSize;
+        totalAmmo = rifleCurrentAmmo;
+        currentClip = rifleCurrentClip;
 
         var reloadTimer = GetNode<Timer>("ReloadTimer");
         reloadTimer.Timeout += FinishReload;
 
         var shootTimer = GetNode<Timer>("ShootTimer");
         shootTimer.Timeout += ShootAutomatically;
+
+        var shotgunCooldownTimer = GetNode<Timer>("ShotgunCooldownTimer");
+        shotgunCooldownTimer.Timeout += OnShotgunCooldownTimeout;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -76,6 +99,7 @@ public partial class Zhukov : CharacterBody2D
         if (Input.IsActionJustReleased("next"))
         {
             currentInv += (currentInv == 2) ? -2 : 1;
+            SwitchWeapon();
         }
     }
 
@@ -110,40 +134,76 @@ public partial class Zhukov : CharacterBody2D
 
     public void attack()
     {
-        if (isReloading)
+        if (isReloading || currentClip == 0)
+    {
+        if (totalAmmo > 0)
         {
-            return;
+            StartReload();
+        }
+        return;
+    }
+
+    if (inventory[currentInv] == 1) // AK-47
+        {
+            ShootSingleBullet();
+            currentClip--;
+        }
+        else if (inventory[currentInv] == 2 && !isShotgunCoolingDown) // Shotgun
+        {
+            ShootShotgun();
+            currentClip--;
+            isShotgunCoolingDown = true;
+            GetNode<Timer>("ShotgunCooldownTimer").Start(shotgunFireRate);
+        }
+    }
+
+    private void ShootSingleBullet()
+    {
+        var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Node2D>();
+        bullet.Position = Position;
+        bullet.LookAt(GetGlobalMousePosition());
+
+        if (bullet is svinets b)
+        {
+            b.Speed = 3600;
         }
 
-        if (currentClip > 0)
+        GetParent().AddChild(bullet);
+    }
+
+    private void ShootShotgun()
+    {
+        int pelletCount = 6; // количество дробинок
+        float spreadAngle = 15f; // угол разброса дробинок
+
+        for (int i = 0; i < pelletCount; i++)
         {
-            currentClip--;
-
-            var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate() as Node2D;
+            var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Node2D>();
             bullet.Position = Position;
-            bullet.LookAt(GetGlobalMousePosition());
 
-            if (bullet is svinets a)
+            Vector2 target = GetGlobalMousePosition();
+            float baseAngle = GetAngleTo(target);
+            float randomSpread = (float)GD.RandRange(-spreadAngle, spreadAngle) * Mathf.DegToRad(1);
+
+            bullet.Rotation = baseAngle + randomSpread;
+
+            if (bullet is svinets b)
             {
-                a.Speed = 3600;
+                b.Speed = 3000;
             }
 
             GetParent().AddChild(bullet);
         }
-        else
-        {
-            StartReload();
-        }
+    }
+
+   private void OnShotgunCooldownTimeout()
+    {
+        isShotgunCoolingDown = false;
     }
 
     public void StartReload()
     {
-        if (isReloading)
-        {
-            return;
-        }
-
-        if (currentClip == clipSize || totalAmmo <= 0)
+        if (isReloading || totalAmmo == 0 || currentClip == clipSize || clipSize == 0)
         {
             return;
         }
@@ -163,7 +223,6 @@ public partial class Zhukov : CharacterBody2D
             currentClip += reloadAmount;
             totalAmmo -= reloadAmount;
         }
-
         isReloading = false;
     }
 
@@ -194,6 +253,51 @@ public partial class Zhukov : CharacterBody2D
         {
             isDashing = false;
             Velocity = Vector2.Zero;
+        }
+    }
+
+    private void SwitchWeapon()
+    {
+
+        if (inventory[currentInv] == 1)
+        {
+            rifleCurrentAmmo = totalAmmo;
+            rifleCurrentClip = currentClip;
+        }
+        else if (inventory[currentInv] == 2)
+        {
+            shotgunCurrentAmmo = totalAmmo;
+            shotgunCurrentClip = currentClip;
+        }
+
+        currentInv = (currentInv + 1) % inventory.Length;
+
+        if (inventory[currentInv] == 1)
+        {
+            clipSize = rifleClipSize;
+            totalAmmo = rifleCurrentAmmo;
+            currentClip = rifleCurrentClip;
+        }
+        else if (inventory[currentInv] == 2)
+        {
+            clipSize = shotgunClipSize;
+            totalAmmo = shotgunCurrentAmmo;
+            currentClip = shotgunCurrentClip;
+        }
+    }
+
+
+    private void UpdateWeaponAmmo()
+    {
+        if (inventory[currentInv] == 1) // AK-47
+        {
+            rifleCurrentClip = currentClip;
+            rifleTotalAmmo = totalAmmo;
+        }
+        else if (inventory[currentInv] == 2) // Shotgun
+        {
+            shotgunCurrentClip = currentClip;
+            shotgunTotalAmmo = totalAmmo;
         }
     }
 }
