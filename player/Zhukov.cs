@@ -7,21 +7,47 @@ public partial class Zhukov : CharacterBody2D
     private int Speed = 400;
     private int RunSpeed = 600;
     private int currentSpeed;
+    private int clipSize = 8;
+    private int totalAmmo = 32;
+    private int currentClip;
+    private bool isReloading = false;
     public override void _Ready()
     {
         arch = GetNode<Sprite2D>("Arch");
         currentSpeed = Speed;
+        currentClip = clipSize;
+
+        var reloadTimer = GetNode<Timer>("ReloadTimer");
+        reloadTimer.Timeout += FinishReload;
+
+        var shootTimer = GetNode<Timer>("ShootTimer");
+        shootTimer.Timeout += ShootAutomatically;
     }
 
     public override void _PhysicsProcess(double delta)
     {
         walk(delta);
 
+        var shootTimer = GetNode<Timer>("ShootTimer");
+        if (Input.IsActionPressed("attack") && shootTimer.TimeLeft <= 0)
+        {
+            shootTimer.Start();
+        }
 
-        if (Input.IsActionJustPressed("attack")){
+        if (Input.IsActionJustReleased("attack") && shootTimer.TimeLeft > 0)
+        {
+            shootTimer.Stop();
+        }
+
+        if (Input.IsActionJustPressed("attack"))
+        {
             attack();
         }
-        
+
+        if (Input.IsActionJustPressed("reload"))
+        {
+            StartReload();
+        }
     }
 
     public void walk(double delta){
@@ -36,7 +62,7 @@ public partial class Zhukov : CharacterBody2D
         if (Input.IsActionPressed("up"))
             velocity.Y -= 1;
 
-        if (Input.IsActionPressed("running"))
+        if (!isReloading && Input.IsActionPressed("running"))
         {
             currentSpeed = RunSpeed;
         }
@@ -53,16 +79,70 @@ public partial class Zhukov : CharacterBody2D
         arch.Rotation = angle + Mathf.Pi / 2;
     }
 
-    public void attack(){
-        var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate() as Node2D;
-        bullet.Position = Position;
-        bullet.LookAt(GetGlobalMousePosition());
-        if (bullet is svinets a)
+    public void attack()
+    {
+        if (isReloading)
         {
-            a.Speed = 3600;
-            
+            return;
         }
-        GetParent().AddChild(bullet);
 
+        if (currentClip > 0)
+        {
+            currentClip--;
+
+            var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate() as Node2D;
+            bullet.Position = Position;
+            bullet.LookAt(GetGlobalMousePosition());
+
+            if (bullet is svinets a)
+            {
+                a.Speed = 3600;
+            }
+
+            GetParent().AddChild(bullet);
+        }
+        else
+        {
+            StartReload();
+        }
+    }
+
+    public void StartReload()
+    {
+        if (isReloading)
+        {
+            return;
+        }
+
+        if (currentClip == clipSize || totalAmmo <= 0)
+        {
+            return;
+        }
+
+        isReloading = true;
+        var reloadTimer = GetNode<Timer>("ReloadTimer");
+        reloadTimer.Start();
+    }
+
+    private void FinishReload()
+    {
+        if (totalAmmo > 0)
+        {
+            int neededAmmo = clipSize - currentClip;
+            int reloadAmount = Mathf.Min(neededAmmo, totalAmmo);
+
+            currentClip += reloadAmount;
+            totalAmmo -= reloadAmount;
+        }
+
+        isReloading = false;
+    }
+
+    private void ShootAutomatically()
+    {
+        if (Input.IsActionPressed("attack"))
+        {
+            attack();
+        }
     }
 }

@@ -19,10 +19,15 @@ texture = ExtResource("2_32xco")
 position = Vector2(0.5, -3)
 shape = SubResource("RectangleShape2D_poocl")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [node name="Arch" type="Sprite2D" parent="."]
 position = Vector2(0, -120)
 texture = ExtResource("3_32xco")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.2
