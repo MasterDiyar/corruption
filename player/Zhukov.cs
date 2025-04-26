@@ -14,6 +14,14 @@ public partial class Zhukov : CharacterBody2D
     private bool isReloading = false;
     public int[] inventory = { 1, 1, 1 };
     public int currentInv = 0;
+
+    private bool isDashing = false;
+    private float dashSpeed = 1200f;
+    private float dashDuration = 0.15f; 
+    private float dashCooldown = 1.0f; 
+    private float dashTimeLeft = 0f;
+    private float dashCooldownLeft = 0f;
+    private Vector2 dashDirection = Vector2.Zero;
     
     public override void _Ready()
     {
@@ -30,7 +38,19 @@ public partial class Zhukov : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        walk(delta);
+        if (dashCooldownLeft > 0)
+            dashCooldownLeft -= (float)delta;
+
+        if (isDashing)
+        {
+            DashMovement(delta);
+        }
+        else
+        {
+            if (Input.IsActionJustPressed("dash") && dashCooldownLeft <= 0)
+                StartDash();
+            walk(delta);
+        }
 
         var shootTimer = GetNode<Timer>("ShootTimer");
         if (Input.IsActionPressed("attack") && shootTimer.TimeLeft <= 0)
@@ -152,6 +172,28 @@ public partial class Zhukov : CharacterBody2D
         if (Input.IsActionPressed("attack"))
         {
             attack();
+        }
+    }
+
+    private void StartDash()
+    {
+        isDashing = true;
+        dashTimeLeft = dashDuration;
+        dashCooldownLeft = dashCooldown;
+
+        dashDirection = (GetGlobalMousePosition() - Position).Normalized();
+    }
+
+    private void DashMovement(double delta)
+    {
+        Velocity = dashDirection * dashSpeed;
+        MoveAndSlide();
+
+        dashTimeLeft -= (float)delta;
+        if (dashTimeLeft <= 0)
+        {
+            isDashing = false;
+            Velocity = Vector2.Zero;
         }
     }
 }
