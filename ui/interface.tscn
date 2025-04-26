@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq82qbynlctl1"]
+
+[ext_resource type="Script" uid="uid://cv2fhylyvwcro" path="res://ui/Interface.cs" id="1_rfcoo"]
+[ext_resource type="Texture2D" uid="uid://dgaa0swv7npc5" path="res://enemy/ramka.png" id="2_pxo3v"]
+[ext_resource type="FontFile" uid="uid://fwi5yvxwx72l" path="res://ui/PixeloidMono.ttf" id="3_7phn3"]
+[ext_resource type="Texture2D" uid="uid://c8c6aos071t8u" path="res://enemy/oboima.png" id="4_386o3"]
+[ext_resource type="Texture2D" uid="uid://cboha8145e27" path="res://enemy/patron.png" id="5_pxo3v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pwylt"]
+line_spacing = 4.0
+font = ExtResource("3_7phn3")
+font_size = 32
+font_color = Color(0.596078, 1, 0.662745, 1)
+outline_size = 2
+outline_color = Color(1, 0, 0, 1)
+shadow_color = Color(0, 0, 0.976471, 1)
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rfcoo")
+
+[node name="inv" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 942.0
+offset_right = 138.0
+offset_bottom = 1070.0
+texture = ExtResource("2_pxo3v")
+
+[node name="item" type="TextureRect" parent="inv"]
+texture_filter = 3
+layout_mode = 0
+offset_left = 5.0
+offset_top = 22.0
+offset_right = 123.0
+offset_bottom = 110.0
+
+[node name="Gp" type="Label" parent="."]
+texture_filter = 3
+layout_mode = 0
+offset_left = -12.0
+offset_top = 29.0
+offset_right = 137.0
+offset_bottom = 113.0
+theme_override_fonts/font = ExtResource("3_7phn3")
+theme_override_font_sizes/font_size = 36
+text = " HP: 10
+   x3
+   x30
+"
+label_settings = SubResource("LabelSettings_pwylt")
+
+[node name="TextureRect" type="TextureRect" parent="Gp"]
+texture_filter = 3
+layout_mode = 0
+offset_left = 18.0
+offset_top = 39.0
+offset_right = 58.0
+offset_bottom = 79.0
+texture = ExtResource("4_386o3")
+
+[node name="Patron" type="Sprite2D" parent="Gp"]
+texture_filter = 3
+position = Vector2(27, 102)
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_pxo3v")
+
+[node name="Patron3" type="Sprite2D" parent="Gp"]
+texture_filter = 3
+position = Vector2(37, 108)
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_pxo3v")
+
+[node name="Patron2" type="Sprite2D" parent="Gp"]
+texture_filter = 3
+position = Vector2(48, 114)
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_pxo3v")

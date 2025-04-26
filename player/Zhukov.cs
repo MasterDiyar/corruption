@@ -7,10 +7,14 @@ public partial class Zhukov : CharacterBody2D
     private int Speed = 400;
     private int RunSpeed = 600;
     private int currentSpeed;
-    private int clipSize = 8;
-    private int totalAmmo = 32;
-    private int currentClip;
+    public int clipSize = 8;
+    public int totalAmmo = 32;
+    public float hp = 10;
+    public int currentClip;
     private bool isReloading = false;
+    public int[] inventory = { 1, 1, 1 };
+    public int currentInv = 0;
+    
     public override void _Ready()
     {
         arch = GetNode<Sprite2D>("Arch");
@@ -44,9 +48,14 @@ public partial class Zhukov : CharacterBody2D
             attack();
         }
 
-        if (Input.IsActionJustPressed("reload"))
+        if (Input.IsActionJustPressed("reload"))  //reload is
         {
             StartReload();
+        }
+
+        if (Input.IsActionJustReleased("next"))
+        {
+            currentInv += (currentInv == 2) ? -2 : 1;
         }
     }
 

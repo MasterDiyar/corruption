@@ -5,6 +5,7 @@ public partial class TestSlime : RigidBody2D
 {
 	private Node root;
 	private Node2D player;
+	public int diff = 300;
 	public override void _Ready()
 	{
 		root = GetParent();
@@ -15,7 +16,7 @@ public partial class TestSlime : RigidBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		var difference = player.Position - Position;
-		if (difference.X * difference.X + difference.Y + difference.Y > 40000)
+		if (difference.X * difference.X + difference.Y + difference.Y > diff*diff)
 		{
 			var angle = GetAngleTo(player.Position);
 			Position += 5 * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));

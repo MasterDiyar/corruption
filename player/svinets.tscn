@@ -1,19 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://drw03ibna6e6h"]
 
-[ext_resource type="Texture2D" uid="uid://snnsij1c4ctp" path="res://icon.svg" id="1_qaj6e"]
 [ext_resource type="Script" uid="uid://b338hohuyprep" path="res://player/svinets.cs" id="2_06f14"]
+[ext_resource type="Texture2D" uid="uid://cboha8145e27" path="res://enemy/patron.png" id="2_cf0kd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06f14"]
-size = Vector2(64, 32)
+size = Vector2(30, 10)
 
 [node name="bullet" type="Area2D"]
 modulate = Color(0.72549, 0.701961, 0.556863, 1)
 script = ExtResource("2_06f14")
 
 [node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 3
 position = Vector2(0, -1.90735e-06)
-scale = Vector2(0.5, 0.25)
-texture = ExtResource("1_qaj6e")
+texture = ExtResource("2_cf0kd")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
