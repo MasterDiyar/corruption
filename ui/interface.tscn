@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq82qbynlctl1"]
+[gd_scene load_steps=15 format=3 uid="uid://dq82qbynlctl1"]
 
 [ext_resource type="Script" uid="uid://cv2fhylyvwcro" path="res://ui/Interface.cs" id="1_rfcoo"]
 [ext_resource type="Texture2D" uid="uid://dgaa0swv7npc5" path="res://enemy/ramka.png" id="2_pxo3v"]
 [ext_resource type="FontFile" uid="uid://fwi5yvxwx72l" path="res://ui/PixeloidMono.ttf" id="3_7phn3"]
 [ext_resource type="Texture2D" uid="uid://c8c6aos071t8u" path="res://enemy/oboima.png" id="4_386o3"]
 [ext_resource type="Texture2D" uid="uid://cboha8145e27" path="res://enemy/patron.png" id="5_pxo3v"]
+[ext_resource type="Texture2D" uid="uid://bofhl14pgybn2" path="res://enemy/boot.png" id="6_7phn3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pwylt"]
 line_spacing = 4.0
@@ -14,6 +15,56 @@ font_color = Color(0.596078, 1, 0.662745, 1)
 outline_size = 2
 outline_color = Color(1, 0, 0, 1)
 shadow_color = Color(0, 0, 0.976471, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_386o3"]
+atlas = ExtResource("6_7phn3")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwylt"]
+atlas = ExtResource("6_7phn3")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl6lo"]
+atlas = ExtResource("6_7phn3")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ulyq"]
+atlas = ExtResource("6_7phn3")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm10k"]
+atlas = ExtResource("6_7phn3")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jibaa"]
+atlas = ExtResource("6_7phn3")
+region = Rect2(100, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cngsy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_386o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwylt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl6lo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ulyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm10k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jibaa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Interface" type="Control"]
 layout_mode = 3
@@ -84,3 +135,10 @@ position = Vector2(48, 114)
 rotation = -1.5708
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_pxo3v")
+
+[node name="boot" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(35, 192)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_cngsy")
+frame_progress = 0.440481

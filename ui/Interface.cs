@@ -6,18 +6,23 @@ public partial class Interface : Control
 	public Label info;
 	private CharacterBody2D root;
 	private TextureRect inv, item;
+	private Node attack;
+	private AnimatedSprite2D sprite;
 	public override void _Ready()
 	{
+		
 		inv = (TextureRect)GetNode("inv");
 		item = (TextureRect)inv.GetNode("item");
 		root = GetParent<CharacterBody2D>();
 		info = GetNode<Label>("Gp");
+		attack = root.GetNode("attack");
+		sprite = GetNode<AnimatedSprite2D>("boot");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (root is Zhukov a)
+		if (attack is Attack a)
 		{
 			info.Text = $" HP: {Mathf.RoundToInt(a.hp)}\n   x{a.totalAmmo/a.clipSize}\n   x{a.currentClip}";
 			switch (a.inventory[a.currentInv])
@@ -28,6 +33,18 @@ public partial class Interface : Control
 					break;
 			}
 		}
-		
+
+		if (root.GetNode("dash") is dash b)
+		{
+			if (b.dashCooldownLeft > 0)
+			{
+				sprite.Play();
+			}
+			else
+			{
+				sprite.Stop();
+				sprite.Frame = 5;
+			}
+		}
 	}
 }
