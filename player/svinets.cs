@@ -5,6 +5,7 @@ public partial class svinets : Area2D
 {
     public int Speed = 900;
     public float damage = 2;
+    public string team = "enemies";
     
     public override void _Ready()
     {
@@ -27,13 +28,22 @@ public partial class svinets : Area2D
     {
         
         
-        if (area.IsInGroup("enemies") && area.HasNode("property"))
+        if (area.IsInGroup(team) && area.HasNode("property"))
         {
             if (area.GetNode("property") is property a)
             {
                 a.hp -= damage;
             }
-            
+            QueueFree();
+        }
+
+        if (area.IsInGroup(team) && area.HasNode("attack"))
+        {
+            if (area.GetNode("attack") is Attack a)
+            {
+                a.hp -= damage;
+            }
+            QueueFree();
         }
 
         

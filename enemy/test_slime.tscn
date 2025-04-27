@@ -11,6 +11,7 @@ radius = 97.88
 [node name="TestSlime" type="RigidBody2D" groups=["enemies"]]
 gravity_scale = 0.0
 script = ExtResource("1_wjk85")
+metadata/ready = false
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 3

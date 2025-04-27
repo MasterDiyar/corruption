@@ -22,8 +22,6 @@ public partial class Attack : Node
 		shootTimer = player.GetNode<Timer>("ShootTimer");
 		shootTimer.Timeout += ShootAutomatically;
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
         if (Input.IsActionPressed("attack") && shootTimer.TimeLeft <= 0)
@@ -59,12 +57,10 @@ public partial class Attack : Node
 
     public void shotgunAttack(int bullet_count = 4, float angle = 0.15f)
     {
-        for (int i = 0; i < bullet_count; i++)
-        {
+        for (int i = 0; i < bullet_count; i++) {
             var sharp = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
-            sharp.LookAt(player.GetGlobalMousePosition());
             sharp.Position = player.Position;
-            sharp.Rotation += i * angle - bullet_count/2 * angle;
+            sharp.Rotation = sharp.GetAngleTo(player.GetGlobalMousePosition()) + i * angle - bullet_count/2f * angle;
             GetParent().GetParent().AddChild(sharp);
         }
     }
@@ -88,6 +84,7 @@ public partial class Attack : Node
             }
             else
                 StartReload();
+            
         }
     
         public void StartReload()

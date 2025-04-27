@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://k6w3fvp6ovdm"]
+
+[ext_resource type="Texture2D" uid="uid://b862qusqvbikx" path="res://enemy/ak47.png" id="1_4o4u6"]
+[ext_resource type="Script" uid="uid://cltrtvny2unu8" path="res://enemy/Ak47.cs" id="2_j83a6"]
+
+[node name="ak47" type="Sprite2D"]
+texture_filter = 3
+texture = ExtResource("1_4o4u6")
+script = ExtResource("2_j83a6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
