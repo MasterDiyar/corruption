@@ -21,10 +21,8 @@ public partial class Ak47 : Sprite2D
 	{
 		LookAt(player.Position);
 		Position =  100 * new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation));
-		if ((bool)mob.GetMeta("ready"))
-		{
-			if (strelnul == 0)
-			{
+		if ((bool)mob.GetMeta("ready")) {
+			if (strelnul == 0) {
 				strelnul = 3;
 				timer.Start();
 			}

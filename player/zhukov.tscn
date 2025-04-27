@@ -1,31 +1,113 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu3k64ehiknbt"]
+[gd_scene load_steps=17 format=3 uid="uid://bu3k64ehiknbt"]
 
 [ext_resource type="Script" uid="uid://bkbxqiumo5f6k" path="res://player/Zhukov.cs" id="1_hoh0i"]
-[ext_resource type="Texture2D" uid="uid://snnsij1c4ctp" path="res://icon.svg" id="2_32xco"]
+[ext_resource type="Texture2D" uid="uid://cfflmgyj43qrr" path="res://player/zhukov/zhukov1.png" id="2_2fm41"]
 [ext_resource type="Texture2D" uid="uid://cvs8vu4nsmevu" path="res://player/arch.png" id="3_32xco"]
+[ext_resource type="Texture2D" uid="uid://dx7wbekw0kvdi" path="res://player/zhukov/zhukov2.png" id="3_wieup"]
+[ext_resource type="Texture2D" uid="uid://bdj4jw0nh0055" path="res://player/zhukov/zhukov3.png" id="4_88fwm"]
 [ext_resource type="PackedScene" uid="uid://dq82qbynlctl1" path="res://ui/interface.tscn" id="4_poocl"]
 [ext_resource type="PackedScene" uid="uid://cjigv7x8aof2" path="res://player/dash.tscn" id="4_r3gio"]
+[ext_resource type="Texture2D" uid="uid://c4i6javai8qb8" path="res://player/zhukov/zhukov4.png" id="5_ajmj6"]
+[ext_resource type="Texture2D" uid="uid://d2eiuldgi7i52" path="res://player/zhukov/zhukov5.png" id="6_g6x13"]
 [ext_resource type="PackedScene" uid="uid://h873dj85cj1p" path="res://player/attack.tscn" id="6_ld455"]
+[ext_resource type="Texture2D" uid="uid://hw7xp4qc74w2" path="res://player/zhukov/zhukov6.png" id="7_iaeu8"]
+[ext_resource type="Texture2D" uid="uid://15j155mvvcbc" path="res://player/zhukov/zhukov8.png" id="9_sg50q"]
+[ext_resource type="Texture2D" uid="uid://cdymek3g67yrx" path="res://enemy/shotgun.png" id="9_wieup"]
+[ext_resource type="Texture2D" uid="uid://mghkjrfipftv" path="res://player/zhukov/arms.png" id="10_88fwm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_poocl"]
-size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7c41"]
+size = Vector2(45, 56)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r3gio"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2fm41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wieup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_88fwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ajmj6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_g6x13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_iaeu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_sg50q")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}]
 
 [node name="Zhukov" type="CharacterBody2D" groups=["player"]]
 safe_margin = 0.1
 script = ExtResource("1_hoh0i")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(1, -3)
-texture = ExtResource("2_32xco")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -3)
-shape = SubResource("RectangleShape2D_poocl")
+position = Vector2(4.5, 7)
+shape = SubResource("RectangleShape2D_g7c41")
+
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+scale = Vector2(2.4, 2.4)
+sprite_frames = SubResource("SpriteFrames_r3gio")
+animation = &"run"
+frame_progress = 0.157445
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": true,
+"layer_section": true,
+"output_section": true,
+"pending_changes": {},
+"slice_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "res://player/zhukov.aseprite"
+}
+
+[node name="weapon" type="Sprite2D" parent="Icon"]
+position = Vector2(6.25, 7.91667)
+rotation = 0.00269699
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("9_wieup")
+offset = Vector2(10, 0)
+
+[node name="left" type="Sprite2D" parent="Icon/weapon"]
+texture_filter = 3
+position = Vector2(15.625, -2.08333)
+rotation = -3.14159
+scale = Vector2(2.60417, 2.60417)
+texture = ExtResource("10_88fwm")
+
+[node name="right" type="Sprite2D" parent="Icon/weapon"]
+position = Vector2(-9.375, -2.08334)
+rotation = 3.60174
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_88fwm")
 
 [node name="Arch" type="Sprite2D" parent="."]
 position = Vector2(0, -120)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_32xco")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -49,5 +131,4 @@ one_shot = true
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_r3gio")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

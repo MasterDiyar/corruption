@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://m1nbdn0t6vay"
+path="res://.godot/imported/zhukov.aseprite-df6f5391e006d2e08f7d4ce044af2726.res"
+
+[deps]
+
+source_file="res://player/zhukov.aseprite"
+dest_files=["res://.godot/imported/zhukov.aseprite-df6f5391e006d2e08f7d4ce044af2726.res"]
+
+[params]
+

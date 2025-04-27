@@ -54,6 +54,7 @@ public partial class dash : Node
 				currentSpeed = RunSpeed;
 			else currentSpeed = Speed;
 		}
+		
 		player.Velocity = velocity.Normalized() * currentSpeed;
 		//Position += velocity * (float)delta;
 		player.MoveAndSlide();

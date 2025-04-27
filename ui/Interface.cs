@@ -8,15 +8,15 @@ public partial class Interface : Control
 	private TextureRect inv, item;
 	private Node attack;
 	private AnimatedSprite2D sprite;
-	public override void _Ready()
-	{
-		
+	private Sprite2D holditem;
+	public override void _Ready() {
 		inv = (TextureRect)GetNode("inv");
 		item = (TextureRect)inv.GetNode("item");
 		root = GetParent<CharacterBody2D>();
 		info = GetNode<Label>("Gp");
 		attack = root.GetNode("attack");
 		sprite = GetNode<AnimatedSprite2D>("boot");
+		holditem = root.GetNode("Icon").GetNode<Sprite2D>("weapon");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,13 +28,24 @@ public partial class Interface : Control
 			switch (a.inventory[a.currentInv])
 			{
 				case 1:
-					if (a.currentClip == 0)item.Texture = GD.Load<Texture2D>("res://enemy/ak47bez.png");
-					else item.Texture = GD.Load<Texture2D>("res://enemy/ak47.png");
+					if (a.currentClip == 0) {
+						item.Texture = GD.Load<Texture2D>("res://enemy/ak47bez.png");
+						holditem.Texture = item.Texture;
+					}
+					else {
+						item.Texture = GD.Load<Texture2D>("res://enemy/ak47.png");
+						holditem.Texture = item.Texture;
+					}
 					break;
 				case 2:
 					item.Texture = GD.Load<Texture2D>("res://enemy/shotgun.png");
+					holditem.Texture = item.Texture;
 					break;
+				
 			}
+			holditem.LookAt(holditem.GetGlobalMousePosition());
+			if (holditem.GetGlobalMousePosition().X < holditem.Position.X) {holditem.FlipV = true;}
+			else holditem.FlipV = false;
 		}
 
 		if (root.GetNode("dash") is dash b)
