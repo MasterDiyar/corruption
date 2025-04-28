@@ -1,7 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://cluvddvs82a1o"]
+[gd_scene load_steps=13 format=3 uid="uid://cluvddvs82a1o"]
 
 [ext_resource type="FontFile" uid="uid://cwcsuan3qs8ii" path="res://ui/PixeloidMono.otf" id="1_bwjgb"]
 [ext_resource type="Script" uid="uid://eqey4cl7jgv1" path="res://ui/Menu.cs" id="1_udkah"]
+[ext_resource type="Texture2D" uid="uid://dk4yjf3px166j" path="res://ui/menu.png" id="2_jbsda"]
+[ext_resource type="Texture2D" uid="uid://ivgmjl7xjdxh" path="res://player/zhukov/zhukov7.png" id="4_0bcp5"]
+[ext_resource type="Texture2D" uid="uid://15j155mvvcbc" path="res://player/zhukov/zhukov8.png" id="5_l8jcj"]
+[ext_resource type="Texture2D" uid="uid://d2eiuldgi7i52" path="res://player/zhukov/zhukov5.png" id="6_cop0s"]
+[ext_resource type="Texture2D" uid="uid://c6ejc6b113w2t" path="res://ui/pokrivalo.png" id="6_cp6tm"]
+[ext_resource type="Texture2D" uid="uid://cfflmgyj43qrr" path="res://player/zhukov/zhukov1.png" id="7_oumb1"]
+[ext_resource type="Texture2D" uid="uid://dx7wbekw0kvdi" path="res://player/zhukov/zhukov2.png" id="8_7toyc"]
+[ext_resource type="Texture2D" uid="uid://bdj4jw0nh0055" path="res://player/zhukov/zhukov3.png" id="9_ybgh7"]
+[ext_resource type="Texture2D" uid="uid://c4i6javai8qb8" path="res://player/zhukov/zhukov4.png" id="10_k3j3x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2fd1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0bcp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l8jcj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cop0s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_oumb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7toyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ybgh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_k3j3x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -11,6 +54,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_udkah")
+
+[node name="Menu" type="Sprite2D" parent="."]
+position = Vector2(960, 544)
+texture = ExtResource("2_jbsda")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -38,3 +85,55 @@ offset_right = 251.0
 offset_bottom = 425.0
 text = "Quit
 "
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(445, 447)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_2fd1n")
+animation = &"idle"
+frame_progress = 0.738033
+
+[node name="Pokrivalo" type="Sprite2D" parent="."]
+position = Vector2(1378, 846)
+rotation = 0.00212319
+texture = ExtResource("6_cp6tm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 2726.0
+offset_top = -1762.0
+offset_right = 5359.0
+offset_bottom = -12.0001
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1349.0
+offset_top = 1701.0
+offset_right = 3269.0
+offset_bottom = 3598.0
+rotation = -0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -1957.0
+offset_top = -697.0
+offset_right = 412.0
+offset_bottom = 1168.0
+rotation = -0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -610.0
+offset_top = 608.0
+offset_right = 2348.0
+offset_bottom = 2524.0
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5

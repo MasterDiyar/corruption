@@ -132,7 +132,7 @@ texture = ExtResource("5_pxo3v")
 [node name="Patron2" type="Sprite2D" parent="Gp"]
 texture_filter = 3
 position = Vector2(48, 114)
-rotation = -1.5708
+rotation = -1.47116
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_pxo3v")
 
