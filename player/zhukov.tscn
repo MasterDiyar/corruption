@@ -65,7 +65,7 @@ texture_filter = 3
 scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_r3gio")
 animation = &"run"
-frame_progress = 0.157445
+frame_progress = 0.736802
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": true,
@@ -130,5 +130,3 @@ one_shot = true
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

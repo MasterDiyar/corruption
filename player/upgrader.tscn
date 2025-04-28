@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://oidmnjs8joff"]
+
+[ext_resource type="Script" uid="uid://dlgavtqbcqss5" path="res://ui/Upgrader.cs" id="1_duwog"]
+[ext_resource type="Texture2D" uid="uid://bjga17ve521qd" path="res://ui/blueprint.png" id="2_w04vr"]
+[ext_resource type="Texture2D" uid="uid://cdymek3g67yrx" path="res://enemy/shotgun.png" id="3_n7e7m"]
+[ext_resource type="Texture2D" uid="uid://dgaa0swv7npc5" path="res://enemy/ramka.png" id="4_kixcs"]
+
+[node name="upgrader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_duwog")
+
+[node name="blueprint" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 120.0
+offset_right = 1340.0
+offset_bottom = 920.0
+texture = ExtResource("2_w04vr")
+
+[node name="weapon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 281.0
+offset_right = 1124.0
+offset_bottom = 689.0
+texture = ExtResource("3_n7e7m")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(900, 500, 1100, 840, 1488, 840)
+default_color = Color(0.870588, 0.870588, 0.870588, 1)
+
+[node name="grade1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1497.0
+offset_top = 774.0
+offset_right = 1633.0
+offset_bottom = 910.0
+icon = ExtResource("4_kixcs")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="grade1"]
+layout_mode = 0
+offset_right = 131.0
+offset_bottom = 135.0
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PackedVector2Array(950, 375, 1300, 250, 1550, 250)
+
+[node name="grade2" type="Button" parent="."]
+offset_left = 1561.0
+offset_top = 182.0
+offset_right = 1697.0
+offset_bottom = 318.0
+icon = ExtResource("4_kixcs")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="grade2"]
+layout_mode = 0
+offset_right = 138.0
+offset_bottom = 139.0

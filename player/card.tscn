@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cll5rmxadlc35"]
+
+[ext_resource type="FontFile" uid="uid://bdham8g4gup88" path="res://ui/PixeloidSans.otf" id="1_728xi"]
+[ext_resource type="Texture2D" uid="uid://dgaa0swv7npc5" path="res://enemy/ramka.png" id="2_4w1bx"]
+
+[node name="Button" type="Button"]
+anchors_preset = -1
+anchor_right = 0.176
+anchor_bottom = 0.12
+offset_right = 0.0799866
+offset_bottom = 6.39999
+theme_override_fonts/font = ExtResource("1_728xi")
+theme_override_font_sizes/font_size = 24
+text = "bullet + 1
+razbros + 0.12f
+damage - 0.5"
+icon = ExtResource("2_4w1bx")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 139.0
+offset_bottom = 137.0
