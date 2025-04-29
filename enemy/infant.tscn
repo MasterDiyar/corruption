@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://dp6kxjkqm4ono"]
+
+[ext_resource type="Script" uid="uid://dyk2fb7by34i" path="res://enemy/Infant.cs" id="1_7lluf"]
+[ext_resource type="Texture2D" uid="uid://blveu18vudt4n" path="res://enemy/german/grayman (4)1.png" id="1_ufroo"]
+[ext_resource type="Texture2D" uid="uid://0wlbjtb8tves" path="res://enemy/german/grayman (4)2.png" id="2_xtpc3"]
+[ext_resource type="Texture2D" uid="uid://dr5yp1x2imcg5" path="res://enemy/german/grayman (4)3.png" id="3_cwoek"]
+[ext_resource type="Texture2D" uid="uid://b5336b2wjioqc" path="res://enemy/german/grayman (4)4.png" id="4_7lluf"]
+[ext_resource type="Texture2D" uid="uid://cp08nt0s1rpvh" path="res://enemy/german/grayman (4)5.png" id="5_td1gm"]
+[ext_resource type="Texture2D" uid="uid://pi1p4uhjm3yk" path="res://enemy/german/grayman (4)7.png" id="6_qgufl"]
+[ext_resource type="Texture2D" uid="uid://bekhbh4ur4a88" path="res://enemy/german/grayman (4)8.png" id="7_2o11i"]
+[ext_resource type="PackedScene" uid="uid://dq00ilrluitk7" path="res://enemy/property.tscn" id="8_cwoek"]
+[ext_resource type="PackedScene" uid="uid://c4tudf0jhp2ld" path="res://enemy/indicator.tscn" id="9_7lluf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7lluf"]
+radius = 50.5594
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvvi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ufroo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xtpc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cwoek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7lluf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_td1gm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_td1gm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qgufl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2o11i")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D" groups=["enemies"]]
+gravity_scale = 0.0
+script = ExtResource("1_7lluf")
+metadata/ready = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 8.5)
+shape = SubResource("CircleShape2D_7lluf")
+
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_xvvi5")
+animation = &"idle"
+frame_progress = 0.315445
+
+[node name="property" parent="." instance=ExtResource("8_cwoek")]
+hp = 40.0
+damage = 2.0
+
+[node name="indicator" parent="." instance=ExtResource("9_7lluf")]

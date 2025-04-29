@@ -14,12 +14,13 @@ public partial class indicator : Node
 		property = root.GetNode("property");
 		if (property is property a) maxhp = a.hp;
 		hp = maxhp;
-		Sprite2D icon = root.GetNode<Sprite2D>("Icon");
+		AnimatedSprite2D icor = root.GetNode<AnimatedSprite2D>("Icon");
+		Sprite2D icon = new Sprite2D();
+		icon.Texture = icor.SpriteFrames.GetFrameTexture(icor.Animation, 0);
 		textureHeight = icon.Texture.GetHeight();
-		textureWidth = icon.Texture.GetWidth();
+		textureWidth = icon.Texture.GetWidth() * icor.Scale.X;
 		hei = textureHeight / 2f + 30f;
 		line.Position = new Vector2(0, -hei);
-		
 	}
 
 

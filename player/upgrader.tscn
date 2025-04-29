@@ -52,6 +52,7 @@ offset_bottom = 135.0
 points = PackedVector2Array(950, 375, 1300, 250, 1550, 250)
 
 [node name="grade2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1561.0
 offset_top = 182.0
 offset_right = 1697.0
@@ -68,4 +69,4 @@ offset_bottom = 139.0
 position = Vector2(960, 540)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.65

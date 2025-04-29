@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cll5rmxadlc35"]
+[gd_scene load_steps=3 format=3 uid="uid://1nm7hc8tv08v"]
 
 [ext_resource type="FontFile" uid="uid://bdham8g4gup88" path="res://ui/PixeloidSans.otf" id="1_728xi"]
 [ext_resource type="Texture2D" uid="uid://dgaa0swv7npc5" path="res://enemy/ramka.png" id="2_4w1bx"]

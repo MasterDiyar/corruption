@@ -27,4 +27,6 @@ public partial class property : Node
 			root.QueueFree();
 		}
 	}
+	
+	//Ataka otdelno propisana v oruzhii lol
 }

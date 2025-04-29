@@ -4,17 +4,20 @@ using System;
 public partial class Attack : Node
 {
 	public int clipSize = 30;
-	public int totalAmmo = 90;
+    public int totalAmmo = 90, dullcount = 4;
 	public float hp = 10;
 	public int currentClip;
 	public bool isReloading = false;
 	public int[] inventory = { 1, 2, 3 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
     public float[] damages = {3, 3, 4.5f, 10, 2.5f};
     public int tbf = 1;
-
+    public bool obrez = false;
+    public float dispersion = 45, angle = 0.15f;
+    public float kniferadius = 70;
 	public int currentInv = 0;
 	[Export]CharacterBody2D player;
     Timer reloadTimer, shootTimer;
+    Random random = new Random();
 	public override void _Ready()
 	{
 		currentClip = clipSize;
@@ -61,25 +64,42 @@ public partial class Attack : Node
 
     public void shotgunAttack(int bullet_count = 4, float angle = 0.15f)
     {
-        for (int i = 0; i < bullet_count; i++) {
-            var sharp = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
-            sharp.Position = player.Position;
-            sharp.Rotation = sharp.GetAngleTo(player.GetGlobalMousePosition()) + i * angle - bullet_count/2f * angle;
-            
-                if (sharp is svinets a){
+        if (isReloading)
+            return;
+        if (currentClip > 0)
+        {
+            currentClip -= (obrez) ? 2 * bullet_count : bullet_count;
+            for (int i = 0; i < bullet_count; i++)
+            {
+                var sharp = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
+                sharp.Position = player.Position;
+                sharp.Rotation = sharp.GetAngleTo(player.GetGlobalMousePosition()) + i * angle -
+                                 bullet_count / 2f * angle + ((random.NextSingle() >0.5f) ? -1 : 1)
+                                 * random.Next((int)dispersion)/45f;
+
+                if (sharp is svinets a)
+                {
                     a.Speed = bulletSpeed[1];
                     a.damage = damages[1];
-                    a.timesbefore = tbf;}
-            GetParent().GetParent().AddChild(sharp);
+                    a.timesbefore = tbf;
+                }
+
+                GetParent().GetParent().AddChild(sharp);
+            }
         }
+        else StartReload();
     }
 
     public void knifeAttack()
     {
         var knife = GD.Load<PackedScene>("res://player/Knife.tscn").Instantiate<Area2D>();
-        knife.GlobalPosition = player.GlobalPosition;
         knife.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
-        GetParent().GetParent().AddChild(knife);
+        knife.Position =kniferadius * new Vector2(Mathf.Cos(knife.Rotation), Mathf.Sin(knife.Rotation));
+        if (knife is Knife life)
+        {
+            life.damage = damages[2];
+        }
+        GetParent().AddChild(knife);
     }
 	
 	public void attack()
@@ -138,7 +158,7 @@ public partial class Attack : Node
                 switch (inventory[currentInv])
                 {
                     case 1:attack(); break;
-                    case 2:shotgunAttack();break;
+                    case 2:shotgunAttack(dullcount, angle);break;
                     case 3: knifeAttack();break;
                 }
         }

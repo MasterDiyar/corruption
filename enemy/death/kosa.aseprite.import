@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d3xg60444wrjp"
+path="res://.godot/imported/kosa.aseprite-ecd4e17df00dbb7bcddd535a8cc0a78f.res"
+
+[deps]
+
+source_file="res://enemy/death/kosa.aseprite"
+dest_files=["res://.godot/imported/kosa.aseprite-ecd4e17df00dbb7bcddd535a8cc0a78f.res"]
+
+[params]
+

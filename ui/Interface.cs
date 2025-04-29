@@ -10,6 +10,7 @@ public partial class Interface : Control
 	private AnimatedSprite2D sprite;
 	private AnimatedSprite2D knife;
 	private Sprite2D holditem;
+	
 	public override void _Ready() {
 		inv = (TextureRect)GetNode("inv");
 		item = (TextureRect)inv.GetNode("item");
@@ -23,12 +24,12 @@ public partial class Interface : Control
         knife.Visible = false;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+
 	public override void _Process(double delta)
 	{
 		if (attack is Attack a)
 		{
-			info.Text = $" HP: {Mathf.RoundToInt(a.hp)}\n   x{a.totalAmmo/a.clipSize}\n   x{a.currentClip}";
+			info.Text = $"  x{Mathf.RoundToInt(a.hp)}\n   x{a.totalAmmo/a.clipSize}\n   x{a.currentClip} from {a.totalAmmo}";
 			switch (a.inventory[a.currentInv])
 			{
 				case 1:
