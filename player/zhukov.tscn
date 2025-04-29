@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bu3k64ehiknbt"]
+[gd_scene load_steps=18 format=3 uid="uid://bu3k64ehiknbt"]
 
 [ext_resource type="Script" uid="uid://bkbxqiumo5f6k" path="res://player/Zhukov.cs" id="1_hoh0i"]
 [ext_resource type="Texture2D" uid="uid://cfflmgyj43qrr" path="res://player/zhukov/zhukov1.png" id="2_2fm41"]
@@ -52,6 +52,9 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wieup"]
+radius = 118.258
+
 [node name="Zhukov" type="CharacterBody2D" groups=["player"]]
 safe_margin = 0.1
 script = ExtResource("1_hoh0i")
@@ -65,7 +68,7 @@ texture_filter = 3
 scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_r3gio")
 animation = &"run"
-frame_progress = 0.736802
+frame_progress = 0.845846
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": true,
@@ -130,3 +133,15 @@ one_shot = true
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="takeitem" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="takeitem"]
+shape = SubResource("CircleShape2D_wieup")
+
+[node name="ColorRect" type="ColorRect" parent="takeitem/CollisionShape2D"]
+offset_left = -76.0
+offset_top = -88.0
+offset_right = 66.0
+offset_bottom = 84.0
+color = Color(1, 1, 1, 0.172549)
