@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://5ftjlrrfi6d4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dlpgl"]
+radius = 26.4764
+
+[node name="items" type="Area2D"]
+metadata/type = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dlpgl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
