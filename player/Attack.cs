@@ -3,12 +3,13 @@ using System;
 
 public partial class Attack : Node
 {
-	public int clipSize = 8;
-	public int totalAmmo = 32;
+	public int clipSize = 30;
+	public int totalAmmo = 90;
 	public float hp = 10;
 	public int currentClip;
 	public bool isReloading = false;
-	public int[] inventory = { 1, 2, 3 };
+	public int[] inventory = { 1, 2, 3 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
+
 	public int currentInv = 0;
 	[Export]CharacterBody2D player;
     Timer reloadTimer, shootTimer;
@@ -62,13 +63,16 @@ public partial class Attack : Node
             var sharp = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
             sharp.Position = player.Position;
             sharp.Rotation = sharp.GetAngleTo(player.GetGlobalMousePosition()) + i * angle - bullet_count/2f * angle;
+            
+                if (sharp is svinets a)
+                    a.Speed = bulletSpeed[1];
             GetParent().GetParent().AddChild(sharp);
         }
     }
 
-    private void knifeAttack()
+    public void knifeAttack()
     {
-        var knife = GD.Load<PackedScene>("res://player/knife_attack.tscn").Instantiate<Area2D>();
+        var knife = GD.Load<PackedScene>("res://player/Knife.tscn").Instantiate<Area2D>();
         knife.GlobalPosition = player.GlobalPosition;
         knife.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
         GetParent().GetParent().AddChild(knife);
@@ -87,7 +91,7 @@ public partial class Attack : Node
                 bullet.LookAt(player.GetGlobalMousePosition());
     
                 if (bullet is svinets a)
-                    a.Speed = 3600;
+                    a.Speed = bulletSpeed[0];
                 
                 GetParent().GetParent().AddChild(bullet);
             }

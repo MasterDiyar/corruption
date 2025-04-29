@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class KnifeAttack : Area2D
+public partial class Knife : Area2D
 {
     public float damage = 4;
     public string team = "enemies";
@@ -10,21 +10,35 @@ public partial class KnifeAttack : Area2D
     public override void _Ready()
     {
         knifeTimer = GetNode<Timer>("Timer");
+        GetNode<AnimatedSprite2D>("lox").Play();
         knifeTimer.Timeout += OnTimerTimeout;
         knifeTimer.Start();
-        BodyEntered += OnBodyEntered;
+        BodyEntered += _OnEnter;
     }
 
-    private void OnBodyEntered(Node body)
+    private void _OnEnter(Node area)
     {
-        if (body.IsInGroup(team))
+        
+        
+        if (area.IsInGroup(team) && area.HasNode("property"))
         {
-            if (body.HasNode("property") && body.GetNode("property") is property a)
+            if (area.GetNode("property") is property a)
+            {
                 a.hp -= damage;
-
-            if (body.HasNode("attack") && body.GetNode("attack") is Attack a2)
-                a2.hp -= damage;
+            }
+            QueueFree();
         }
+
+        if (area.IsInGroup(team) && area.HasNode("attack"))
+        {
+            if (area.GetNode("attack") is Attack a)
+            {
+                a.hp -= damage;
+            }
+            QueueFree();
+        }
+
+        
     }
 
     private void OnTimerTimeout()

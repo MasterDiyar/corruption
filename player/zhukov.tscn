@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bu3k64ehiknbt"]
+[gd_scene load_steps=25 format=3 uid="uid://bu3k64ehiknbt"]
 
 [ext_resource type="Script" uid="uid://bkbxqiumo5f6k" path="res://player/Zhukov.cs" id="1_hoh0i"]
 [ext_resource type="Texture2D" uid="uid://cfflmgyj43qrr" path="res://player/zhukov/zhukov1.png" id="2_2fm41"]
@@ -83,6 +83,7 @@ animations = [{
 "name": &"default",
 "speed": 7.0
 }]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wieup"]
 radius = 118.258
 
@@ -144,7 +145,6 @@ texture = ExtResource("10_88fwm")
 [node name="right" type="Sprite2D" parent="Icon"]
 position = Vector2(2.50226, 7.07322)
 rotation = -2.67875
-scale = Vector2(1, 1)
 texture = ExtResource("10_88fwm")
 
 [node name="Arch" type="Sprite2D" parent="."]
@@ -177,10 +177,3 @@ wait_time = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="takeitem"]
 shape = SubResource("CircleShape2D_wieup")
-
-[node name="ColorRect" type="ColorRect" parent="takeitem/CollisionShape2D"]
-offset_left = -76.0
-offset_top = -88.0
-offset_right = 66.0
-offset_bottom = 84.0
-color = Color(1, 1, 1, 0.172549)
