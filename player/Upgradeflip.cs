@@ -29,7 +29,23 @@ public partial class Upgradeflip : Node
     public void ak47(int[] al){
         if (attack is Attack tack){
             switch (al[0]){
+                case 0:
+                    tack.bulletSpeed[0] = 3600;
+                    tack.damages[0] = 3;
+                    tack.clipSize = 30;
+                    tack.tbf = 1;
+                break;
                 case 1:
+                    tack.bulletSpeed[0] = 3800;
+                    tack.damages[0] = 4;
+                    tack.clipSize = 26;
+                break;
+                case 2:
+                    tack.bulletSpeed[0] = 3450;
+                    tack.damages[0] = 2;
+                    tack.tbf = 2;
+                break;
+                case 3:
                     
                 break;
             }

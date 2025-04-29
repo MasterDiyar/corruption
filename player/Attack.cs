@@ -9,6 +9,8 @@ public partial class Attack : Node
 	public int currentClip;
 	public bool isReloading = false;
 	public int[] inventory = { 1, 2, 3 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
+    public float[] damages = {3, 3, 4.5f, 10, 2.5f};
+    public int tbf = 1;
 
 	public int currentInv = 0;
 	[Export]CharacterBody2D player;
@@ -64,8 +66,10 @@ public partial class Attack : Node
             sharp.Position = player.Position;
             sharp.Rotation = sharp.GetAngleTo(player.GetGlobalMousePosition()) + i * angle - bullet_count/2f * angle;
             
-                if (sharp is svinets a)
+                if (sharp is svinets a){
                     a.Speed = bulletSpeed[1];
+                    a.damage = damages[1];
+                    a.timesbefore = tbf;}
             GetParent().GetParent().AddChild(sharp);
         }
     }
@@ -90,9 +94,11 @@ public partial class Attack : Node
                 bullet.Position = player.Position;
                 bullet.LookAt(player.GetGlobalMousePosition());
     
-                if (bullet is svinets a)
-                    a.Speed = bulletSpeed[0];
-                
+                if (bullet is svinets svin){
+                    svin.Speed = bulletSpeed[0];
+                    svin.damage = damages[0];
+                    svin.timesbefore = tbf;
+                }
                 GetParent().GetParent().AddChild(bullet);
             }
             else
