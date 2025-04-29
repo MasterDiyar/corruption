@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bu3k64ehiknbt"]
+[gd_scene load_steps=24 format=3 uid="uid://bu3k64ehiknbt"]
 
 [ext_resource type="Script" uid="uid://bkbxqiumo5f6k" path="res://player/Zhukov.cs" id="1_hoh0i"]
 [ext_resource type="Texture2D" uid="uid://cfflmgyj43qrr" path="res://player/zhukov/zhukov1.png" id="2_2fm41"]
@@ -14,6 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://15j155mvvcbc" path="res://player/zhukov/zhukov8.png" id="9_sg50q"]
 [ext_resource type="Texture2D" uid="uid://cdymek3g67yrx" path="res://enemy/shotgun.png" id="9_wieup"]
 [ext_resource type="Texture2D" uid="uid://mghkjrfipftv" path="res://player/zhukov/arms.png" id="10_88fwm"]
+[ext_resource type="Texture2D" uid="uid://crcch8cfn33tr" path="res://enemy/knife/Knife e1.png" id="10_sg50q"]
+[ext_resource type="Texture2D" uid="uid://b3hnw6inkgt48" path="res://enemy/knife/Knife e2.png" id="11_3ih4i"]
+[ext_resource type="Texture2D" uid="uid://dhjyvg06kv3m8" path="res://enemy/knife/Knife e3.png" id="12_vwgbq"]
+[ext_resource type="Texture2D" uid="uid://by6ckj36l46ud" path="res://enemy/knife/Knife e4.png" id="13_t6sgr"]
+[ext_resource type="Texture2D" uid="uid://2umxa0hllb3x" path="res://enemy/knife/Knife e5.png" id="14_t7n7w"]
+[ext_resource type="Texture2D" uid="uid://8y2pguw8cvxj" path="res://enemy/knife/Knife e6.png" id="15_x46sj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7c41"]
 size = Vector2(45, 56)
@@ -52,6 +58,32 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nbtx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_sg50q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3ih4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vwgbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t6sgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_t7n7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x46sj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
 [node name="Zhukov" type="CharacterBody2D" groups=["player"]]
 safe_margin = 0.1
 script = ExtResource("1_hoh0i")
@@ -65,7 +97,7 @@ texture_filter = 3
 scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_r3gio")
 animation = &"run"
-frame_progress = 0.736802
+frame_progress = 0.253665
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": true,
@@ -86,23 +118,31 @@ metadata/_aseprite_wizard_config_ = {
 }
 
 [node name="weapon" type="Sprite2D" parent="Icon"]
+visible = false
 position = Vector2(6.25, 7.91667)
 rotation = 0.00269699
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("9_wieup")
 offset = Vector2(10, 0)
 
-[node name="left" type="Sprite2D" parent="Icon/weapon"]
+[node name="knife" type="AnimatedSprite2D" parent="Icon"]
+position = Vector2(19.1667, 2.5)
+rotation = 0.00269699
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_3nbtx")
+frame_progress = 0.264502
+
+[node name="left" type="Sprite2D" parent="Icon"]
 texture_filter = 3
-position = Vector2(15.625, -2.08333)
-rotation = -3.14159
-scale = Vector2(2.60417, 2.60417)
+position = Vector2(12.5022, 7.1002)
+rotation = -3.13889
+scale = Vector2(1.04167, 1.04167)
 texture = ExtResource("10_88fwm")
 
-[node name="right" type="Sprite2D" parent="Icon/weapon"]
-position = Vector2(-9.375, -2.08334)
-rotation = 3.60174
-scale = Vector2(2.5, 2.5)
+[node name="right" type="Sprite2D" parent="Icon"]
+position = Vector2(2.50226, 7.07322)
+rotation = -2.67875
+scale = Vector2(1, 1)
 texture = ExtResource("10_88fwm")
 
 [node name="Arch" type="Sprite2D" parent="."]

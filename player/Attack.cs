@@ -8,7 +8,7 @@ public partial class Attack : Node
 	public float hp = 10;
 	public int currentClip;
 	public bool isReloading = false;
-	public int[] inventory = { 1, 2, 1 };
+	public int[] inventory = { 1, 2, 3 };
 	public int currentInv = 0;
 	[Export]CharacterBody2D player;
     Timer reloadTimer, shootTimer;
@@ -40,6 +40,7 @@ public partial class Attack : Node
             {
                 case 1:attack(); break;
                 case 2:shotgunAttack();break;
+                case 3: knifeAttack();break;
             }
             
         }
@@ -63,6 +64,14 @@ public partial class Attack : Node
             sharp.Rotation = sharp.GetAngleTo(player.GetGlobalMousePosition()) + i * angle - bullet_count/2f * angle;
             GetParent().GetParent().AddChild(sharp);
         }
+    }
+
+    private void knifeAttack()
+    {
+        var knife = GD.Load<PackedScene>("res://player/knife_attack.tscn").Instantiate<Area2D>();
+        knife.GlobalPosition = player.GlobalPosition;
+        knife.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
+        GetParent().GetParent().AddChild(knife);
     }
 	
 	public void attack()
@@ -120,6 +129,7 @@ public partial class Attack : Node
                 {
                     case 1:attack(); break;
                     case 2:shotgunAttack();break;
+                    case 3: knifeAttack();break;
                 }
         }
 }
