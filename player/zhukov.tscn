@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=24 format=3 uid="uid://bu3k64ehiknbt"]
-=======
 [gd_scene load_steps=18 format=3 uid="uid://bu3k64ehiknbt"]
->>>>>>> 89c1e1baf818ef1945ca2457191aba26b857b5d1
 
 [ext_resource type="Script" uid="uid://bkbxqiumo5f6k" path="res://player/Zhukov.cs" id="1_hoh0i"]
 [ext_resource type="Texture2D" uid="uid://cfflmgyj43qrr" path="res://player/zhukov/zhukov1.png" id="2_2fm41"]
@@ -62,7 +58,6 @@ animations = [{
 "speed": 4.0
 }]
 
-<<<<<<< HEAD
 [sub_resource type="SpriteFrames" id="SpriteFrames_3nbtx"]
 animations = [{
 "frames": [{
@@ -88,10 +83,8 @@ animations = [{
 "name": &"default",
 "speed": 7.0
 }]
-=======
 [sub_resource type="CircleShape2D" id="CircleShape2D_wieup"]
 radius = 118.258
->>>>>>> 89c1e1baf818ef1945ca2457191aba26b857b5d1
 
 [node name="Zhukov" type="CharacterBody2D" groups=["player"]]
 safe_margin = 0.1
@@ -106,11 +99,7 @@ texture_filter = 3
 scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_r3gio")
 animation = &"run"
-<<<<<<< HEAD
 frame_progress = 0.253665
-=======
-frame_progress = 0.845846
->>>>>>> 89c1e1baf818ef1945ca2457191aba26b857b5d1
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": true,
