@@ -3,11 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes"
 type="SpriteFrames"
 uid="uid://cpok02nupmuqh"
-valid=false
+path="res://.godot/imported/grayman.aseprite-9cf72d31a768d661cfa8af14a8652c9e.res"
 
 [deps]
 
 source_file="res://enemy/grayman.aseprite"
+dest_files=["res://.godot/imported/grayman.aseprite-9cf72d31a768d661cfa8af14a8652c9e.res"]
 
 [params]
 

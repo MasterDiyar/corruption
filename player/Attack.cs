@@ -8,7 +8,7 @@ public partial class Attack : Node
 	public float hp = 10;
 	public int currentClip;
 	public bool isReloading = false;
-	public int[] inventory = { 1, 2, 3, 4, 5 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
+	public int[] inventory = { 4, 2, 5 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
     public float[] damages = {3, 3, 4.5f, 10, 2.5f};
     public int tbf = 1;
     public bool obrez = false;
