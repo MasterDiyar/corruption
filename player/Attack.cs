@@ -77,11 +77,10 @@ public partial class Attack : Node
             for (int i = 0; i < bullet_count; i++)
             {
                 var sharp = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
-                sharp.Position = player.Position;
+                sharp.Position = player.Position + 50 * new Vector2(Mathf.Cos(sharp.Rotation), Mathf.Sin(sharp.Rotation));
                 sharp.Rotation = sharp.GetAngleTo(player.GetGlobalMousePosition()) + i * angle -
                                  bullet_count / 2f * angle + ((random.NextSingle() >0.5f) ? -1 : 1)
                                  * random.Next((int)dispersion)/45f;
-
                 if (sharp is svinets a)
                 {
                     a.Speed = bulletSpeed[1];
@@ -116,8 +115,8 @@ public partial class Attack : Node
         {
             currentClip--;
             var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
-            bullet.Position = player.Position;
             bullet.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
+            bullet.Position = player.Position + 50 * new Vector2(Mathf.Cos(bullet.Rotation), Mathf.Sin(bullet.Rotation));
 
             if (bullet is svinets svin)
             {
@@ -141,8 +140,8 @@ public partial class Attack : Node
             currentClip--;
             var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
 
-            bullet.Position = player.Position;
-            bullet.LookAt(player.GetGlobalMousePosition());
+            bullet.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
+            bullet.Position = player.Position + 50 * new Vector2(Mathf.Cos(bullet.Rotation), Mathf.Sin(bullet.Rotation));
 
             if (bullet is svinets svin)
             {
@@ -166,8 +165,8 @@ public partial class Attack : Node
             {
                 currentClip--;
                 var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate() as Node2D;
-                bullet.Position = player.Position;
-                bullet.LookAt(player.GetGlobalMousePosition());
+                bullet.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
+                bullet.Position = player.Position + 50 * new Vector2(Mathf.Cos(bullet.Rotation), Mathf.Sin(bullet.Rotation));
     
                 if (bullet is svinets svin){
                     svin.Speed = bulletSpeed[0];

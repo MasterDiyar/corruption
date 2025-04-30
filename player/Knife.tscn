@@ -39,7 +39,6 @@ script = ExtResource("1_sgffr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6.36611, -2.00173)
 rotation = 0.47822
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_cs1bj")
 
 [node name="lox" type="AnimatedSprite2D" parent="."]
