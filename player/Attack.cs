@@ -17,6 +17,12 @@ public partial class Attack : Node
     public float dispersion = 45, angle = 0.15f;
     public float kniferadius = 70;
 	public int currentInv = 0;
+    private double lastShotTime = 0;
+    public float shotgunCooldown = 0.6f;
+    public float rifleCooldown = 0.8f;
+    public float pistolCooldown = 0.3f;
+    public float defaultCooldown = 0.25f;
+
     
 	[Export]CharacterBody2D player;
     Timer reloadTimer, shootTimer;
@@ -69,8 +75,10 @@ public partial class Attack : Node
 
     public void shotgunAttack(int bullet_count = 4, float angle = 0.15f)
     {
-        if (isReloading)
+        if (isReloading || Time.GetTicksMsec() - lastShotTime < shotgunCooldown * 1000)
             return;
+
+        lastShotTime = Time.GetTicksMsec();
         if (currentClip > 0)
         {
             currentClip -= (obrez) ? 2 * bullet_count : bullet_count;
@@ -108,8 +116,10 @@ public partial class Attack : Node
 
     public void pistolAttack()
     {
-        if (isReloading)
+        if (isReloading || Time.GetTicksMsec() - lastShotTime < pistolCooldown * 1000)
             return;
+
+        lastShotTime = Time.GetTicksMsec();
 
         if (currentClip > 0)
         {
@@ -132,8 +142,10 @@ public partial class Attack : Node
 
     public void rifleAttack()
     {
-        if (isReloading)
+        if (isReloading || Time.GetTicksMsec() - lastShotTime < rifleCooldown * 1000)
             return;
+
+        lastShotTime = Time.GetTicksMsec();
 
         if (currentClip > 0)
         {
@@ -158,8 +170,10 @@ public partial class Attack : Node
 	
 	public void attack()
         {
-            if (isReloading)
+            if (isReloading || Time.GetTicksMsec() - lastShotTime < defaultCooldown * 1000)
                 return;
+
+            lastShotTime = Time.GetTicksMsec();
     
             if (currentClip > 0)
             {
