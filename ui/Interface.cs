@@ -57,6 +57,20 @@ public partial class Interface : Control
         			knife.Visible = true;
 					item.Texture = GD.Load<Texture2D>("res://enemy/knife/Knife e1.png");
         			break;
+
+				case 4:
+    				knife.Visible = false;
+    				item.Texture = GD.Load<Texture2D>("res://enemy/rifle.png");
+    				holditem.Texture = item.Texture;
+    				holditem.Visible = true;
+    				break;
+
+				case 5:
+    				knife.Visible = false;
+    				item.Texture = GD.Load<Texture2D>("res://enemy/pistol.png");
+    				holditem.Texture = item.Texture;
+    				holditem.Visible = true;
+    				break;
 			}
 			holditem.LookAt(holditem.GetGlobalMousePosition());
 			if (holditem.GetGlobalMousePosition().X < holditem.Position.X) {holditem.FlipV = true;}

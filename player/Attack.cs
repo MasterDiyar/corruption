@@ -8,7 +8,7 @@ public partial class Attack : Node
 	public float hp = 10;
 	public int currentClip;
 	public bool isReloading = false;
-	public int[] inventory = { 1, 2, 3 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
+	public int[] inventory = { 1, 2, 3, 4, 5 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
     public float[] damages = {3, 3, 4.5f, 10, 2.5f};
     public int tbf = 1;
     public bool obrez = false;
@@ -46,7 +46,9 @@ public partial class Attack : Node
             {
                 case 1:attack(); break;
                 case 2:shotgunAttack();break;
-                case 3: knifeAttack();break;
+                case 3:knifeAttack();break;
+                case 4:rifleAttack();break;
+                case 5:pistolAttack();break;
             }
             
         }
@@ -101,6 +103,56 @@ public partial class Attack : Node
         }
         GetParent().AddChild(knife);
     }
+
+    public void pistolAttack()
+    {
+        if (isReloading)
+            return;
+
+        if (currentClip > 0)
+        {
+            currentClip--;
+            var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
+            bullet.Position = player.Position;
+            bullet.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
+
+            if (bullet is svinets svin)
+            {
+                svin.Speed = bulletSpeed[4];
+                svin.damage = damages[4];
+                svin.timesbefore = tbf;
+            }
+
+            GetParent().GetParent().AddChild(bullet);
+        }
+        else StartReload();
+    }
+
+    public void rifleAttack()
+    {
+        if (isReloading)
+            return;
+
+        if (currentClip > 0)
+        {
+            currentClip--;
+            var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
+
+            bullet.Position = player.Position;
+            bullet.LookAt(player.GetGlobalMousePosition());
+
+            if (bullet is svinets svin)
+            {
+                svin.Speed = bulletSpeed[3];
+                svin.damage = damages[3];
+                svin.timesbefore = tbf;
+            }
+
+            GetParent().GetParent().AddChild(bullet);
+        }
+        else StartReload();
+    }
+
 	
 	public void attack()
         {
@@ -159,7 +211,9 @@ public partial class Attack : Node
                 {
                     case 1:attack(); break;
                     case 2:shotgunAttack(dullcount, angle);break;
-                    case 3: knifeAttack();break;
+                    case 3:knifeAttack();break;
+                    case 4:rifleAttack();break;
+                    case 5:pistolAttack();break;
                 }
         }
 }
