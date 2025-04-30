@@ -33,11 +33,12 @@ public partial class svinets : Area2D
         
         if (area.IsInGroup(team) && area.HasNode("property"))
         {
+            timesbefore--;
             if (area.GetNode("property") is property a)
             {
                 a.hp -= damage;
             }
-            QueueFree();
+            if (timesbefore <= 0)QueueFree();
         }
 
         if (area.IsInGroup(team) && area.HasNode("attack"))

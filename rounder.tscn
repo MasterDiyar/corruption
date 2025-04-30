@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://kds44ns35d1o"]
+
+[ext_resource type="Texture2D" uid="uid://f3ij3y85v1hb" path="res://enemy/german/eblota.png" id="1_07bh7"]
+[ext_resource type="Script" uid="uid://cg040y1suceh7" path="res://enemy/Rounder.cs" id="1_ivdaq"]
+
+[node name="rounder" type="Node"]
+script = ExtResource("1_ivdaq")
+
+[node name="Eblota2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 0.462745)
+texture_filter = 3
+position = Vector2(-10, -15)
+scale = Vector2(4, 4)
+texture = ExtResource("1_07bh7")
+
+[node name="Eblota" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 1, 0.498039)
+texture_filter = 3
+position = Vector2(10, 15)
+scale = Vector2(4, 4)
+texture = ExtResource("1_07bh7")

@@ -22,6 +22,7 @@ public partial class Infant : RigidBody2D
 			Position += speed * (float)delta * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 			SetMeta("ready", false);
 		}
+		else if(difference.X * difference.X + difference.Y * difference.Y > aluis * aluis){}
 		else
 		{
 			SetMeta("ready", true);

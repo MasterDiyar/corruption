@@ -7,7 +7,7 @@ public partial class Firstmap : Node2D
 	public override void _Ready()
 	{
 		timer = GetNode<Timer>("Timer");
-		//timer.Timeout += timeout;
+		timer.Timeout += timeout;
 	}
 
 
@@ -17,7 +17,7 @@ public partial class Firstmap : Node2D
 
 	public void timeout()
 	{
-		Node mob = GD.Load<PackedScene>("res://enemy/infant.tscn").Instantiate();
+		RigidBody2D mob = GD.Load<PackedScene>("res://enemy/infant.tscn").Instantiate<RigidBody2D>();
 		Node amn = GD.Load<PackedScene>("res://player/ak_47.tscn").Instantiate();
 		mob.AddChild(amn);
 		GetParent().AddChild(mob);

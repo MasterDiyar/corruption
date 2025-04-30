@@ -11,20 +11,22 @@ public partial class Upgradeflip : Node
 
     public override void _Ready()
     {
-        GD.Print("Upgradeflip ready");
-        player = GetNode<CharacterBody2D>("Zhukov");
+        player = GetParent<CharacterBody2D>();
+        attack = player.GetNode("attack");
         main = GetParent().GetParent();
         if (main is Main gay){
             upgrades = CTJ(gay.upgrades);
             weapons = gay.inventory;
         }
-        
+        GD.Print("Upgradenums",upgrades[1][0],upgrades[1][1]);
             for(int i = 0 ; i < 3; i++ ){
+                GD.Print("Weapons",weapons[i]);
                 switch (weapons[i]){
                     case 1:
                     ak47(upgrades[i]);
                     break;
                     case 2:
+                        GD.Print("Weapons==",weapons[i]);
                         drobash(upgrades[i]);
                         break;
                     case 3:
@@ -35,28 +37,42 @@ public partial class Upgradeflip : Node
     }
 
     public void ak47(int[] al){
-        if (attack is Attack tack){
+        if (attack is Attack tack)
+        {
+            float[] akd = [3600, 3, 30, 1, 100, 5], akn = [0, 0, 0, 0, 0, 0], aks = [0, 0, 0, 0, 0, 0];
+            //akd = ak default akn ak normal aks ak super
             switch (al[0]){
                 case 0:
-                    tack.bulletSpeed[0] = 3600;
-                    tack.damages[0] = 3;
-                    tack.clipSize = 30;
-                    tack.tbf = 1;
+                    akn = [0, 0, 0, 0, 0, 0];
                 break;
                 case 1:
-                    tack.bulletSpeed[0] = 3800;
-                    tack.damages[0] = 4;
-                    tack.clipSize = 26;
+                    akn = [200, 1, -4, 0, 0, 0];
                 break;
                 case 2:
-                    tack.bulletSpeed[0] = 3450;
-                    tack.damages[0] = 2.5f;
-                    tack.tbf = 2;
+                    akn = [-150, -0.5f, 0, 1, 0, 0];
                 break;
                 case 3:
-                    
+                    akn = [0, 2, -10, 1, 0, 5];
                 break;
             }
+
+            switch (al[1])
+            {
+                case 4:
+                    aks = [0, 0, 0, 0, 0, 0]; break; //speed, damage, clipsize, pierce,
+                case 5:                                //waste chance, dispersion
+                    aks = [0, -0.5f * (akn[1] + akd[1]), 0, 4, -10, 0]; break;
+                case 6:
+                    aks = [400, 2*(akn[1] + akd[1]), 0, 0, 0, 10]; break;
+                case 7:
+                    aks = [0, 0, 0, 1, -50, -akd[5]-akn[5]]; break;
+            }
+            tack.bulletSpeed[0] = (int)(akn[0] + aks[0] + akd[0]);
+            tack.damages[0] = akn[1] + aks[1] + akd[1];
+            tack.clipSize = (int)(akn[2] + aks[2] + akd[2]);
+            tack.tbf[0] = (int)(akn[3] + aks[3] + akd[3]);
+            tack.Unbreaking[0] = (int)(akn[4] + aks[4] + akd[4]);
+            tack.dispersion[0] = (int)(akn[5] + aks[5] + akd[5]);
         }
     }
 
@@ -64,8 +80,7 @@ public partial class Upgradeflip : Node
     {
         int[] _def = [3000, 4, 12, 45], _abs = [3000,  4, 12, 45], _ads = [0,  0, 0, 0];
         float[] _fdef = [3, 0.15f], _fabs = [3, 0.15f], _fads = [0, 0];
-        if (attack is Attack tack)
-        {
+        if (attack is Attack tack) {
             switch (al[0])
             {
                 case 0:
@@ -99,9 +114,7 @@ public partial class Upgradeflip : Node
                     _fabs[1] -= _fdef[1];
                     break;
             }
-
-            switch (al[1])
-            {
+            switch (al[1]) {
                 case 4:
                     tack.obrez = false;
                     _ads[0] = 0; //Скорость пули
@@ -110,7 +123,7 @@ public partial class Upgradeflip : Node
                     _ads[3] = 0; //Разброз
                     _fads[0] = 0;//Урон
                     _fads[1] = 0;//Сухой Угол
-                    tack.tbf = 2;
+                    tack.tbf[1] = 2;//Прошив
                     break;
                 case 5:
                     tack.obrez = true;
@@ -120,7 +133,7 @@ public partial class Upgradeflip : Node
                     _ads[3] = 20;
                     _fads[0] = _fabs[0];
                     _fads[1] = 0;
-                    tack.tbf = 2;
+                    tack.tbf[1] = 2;
                     break;
                 case 6:
                     tack.obrez = false;
@@ -130,7 +143,7 @@ public partial class Upgradeflip : Node
                     _ads[3] = 0;
                     _fads[0] = 0;
                     _fads[1] = -0.1f;
-                    tack.tbf = 4;
+                    tack.tbf[1] = 4;
                     break;
                 case 7:
                     tack.obrez = false;
@@ -140,17 +153,32 @@ public partial class Upgradeflip : Node
                     _ads[3] = 0;
                     _fads[0] = 0;
                     _fads[1] = 0;
-                    tack.tbf = 2;
+                    tack.tbf[1] = 2;
                     break;
             }
-
             tack.bulletSpeed[1] = _abs[0] + _ads[0];
             tack.dullcount = _abs[1] + _ads[1];
             tack.clipSize = _abs[2] + _ads[2];
-            tack.dispersion = _abs[3] + _ads[3];
+            tack.dispersion[1] = _abs[3] + _ads[3];
             tack.damages[1] = _fabs[0] + _fads[0];
             tack.angle = _fdef[1];
+            GD.Print(tack.dullcount);
         }
+    }
+
+    public void knife()
+    {
+        
+    }
+
+    public void rifle()
+    {
+        
+    }
+
+    public void pistol()
+    {
+        
     }
 
     public static int[][] CTJ(int[,] array){ //ConvertToJagged

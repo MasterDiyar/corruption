@@ -70,9 +70,17 @@ public partial class Menu : Control
 			times--;
 			timer.WaitTime = 0.2f;
 		}else if (times == -1)
-         		{
+		{
+					Node player = GD.Load<PackedScene>("res://player/zhukov.tscn").Instantiate();
+					if (player is Zhukov a) {
+						a.Position = new Vector2(1370, 0);
+						if (a.GetNode("attack") is Attack b)
+						{
+							if (GetParent() is Main c) c.inventory = b.inventory;
+						}}
+					
          			GetParent().AddChild(GD.Load<PackedScene>("res://map/firstmap.tscn").Instantiate());
-         			GetParent().AddChild(GD.Load<PackedScene>("res://player/zhukov.tscn").Instantiate());
+         			GetParent().AddChild(player);
          			QueueFree();
          		}
 		else times --;

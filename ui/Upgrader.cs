@@ -11,23 +11,32 @@ public partial class Upgrader : Control
     bool[] an = {false, false};
     bool obratno = false, exit = false;
     Timer timer;
+    private TextureRect weapin;
 
 
     string[,] blocks={
-        {"", "bullet speed + 200\ndamage + 1\nblast count - 4",
+        {"","","","","","","",""},
+        {"default", "bullet speed + 200\ndamage + 1\nclip count - 4",
          "bullet speed - 150\ndamage - 0.5\npierce + 1",
-         "bullet count - 10\n damage +2\npierce + 1 ", 
-         "", "",
-         "",
-         ""},
+         "clip count - 10\n damage +2\npierce + 1 disperce + 5", 
+         
+         "default", "damage x0.5\npierce + 4\nchance to not waste = 90%",
+         "damage x2\nbullet speed + 400\n disperce + 10",
+         "disperce = 0\n chance to not waste = 50%\n pierce + 1"},//avtomat
 
-        {"", "bullet + 1\nrazbros + 0.12f \ndamage - 0.5",
+        {"default", "bullet + 1\nrazbros + 0.12f \ndamage - 0.5",
          "bullet - 1 \nrazbros - 0.07f dispersion -10% \ndamage + 1.5",
          "bullet + 3\ndispersion- 30% \ndamage -1",
 
-         "", "upgrades to obrez\ndispersion + 40% \ndamage & bullet x2",
+         "default", "upgrades to obrez\ndispersion + 40% \ndamage & bullet x2",
          "pierce + 2\nbullet - 1 speed + 400\nrazbros -0.1f",
-         "pierce + 1\ndamage + 2\n "}
+         "pierce + 1\ndamage + 2\n "},//drobash
+        
+        {"default","","","","default","","",""},//knife
+        {"default","","","","default","","",""},//pistol
+        {"default","","","","default","","",""}//rifle
+        
+        
     };
 
     private Rect2[,] offset = {
@@ -35,11 +44,14 @@ public partial class Upgrader : Control
         
     }; 
     static Rect2 Ee(float a, float b, float c, float d){return new Rect2(a,b,c,d);}
+   
+    
     public override void _Ready()
     {
         me = GetNode<Camera2D>("Camera2D");
         upgrade1 = GetNode<Button>("grade1");
         upgrade2 = GetNode<Button>("grade2");
+        weapin = GetNode<TextureRect>("weapon");
         upgrade1.Pressed += upress;
         upgrade2.Pressed += downpress;
         timer = GetNode<Timer>("Timer");
@@ -50,8 +62,24 @@ public partial class Upgrader : Control
             }
             timer.Stop();
         };
-        
-        
+        switch (type)
+        {
+            case 1:
+                weapin.Texture = GD.Load<Texture2D>("res://enemy/ak47.png");
+                break;
+            case 2:
+                weapin.Texture = GD.Load<Texture2D>("res://enemy/shotgun.png");
+                break;
+            case 3:
+                weapin.Texture = GD.Load<Texture2D>("res://enemy/knife/Knife e1.png");
+                break;
+            case 4:
+                weapin.Texture = GD.Load<Texture2D>("res://enemy/rifle.png");
+                break;
+            case 5:
+                weapin.Texture = GD.Load<Texture2D>("res://enemy/pistol.png");
+                break;
+        }
     }
 
     public override void _Process(double delta)
@@ -80,7 +108,6 @@ public partial class Upgrader : Control
                 zhukov.ProcessMode = ProcessModeEnum.Inherit;
                 zhukov.camera.Enabled = true;
             }
-            GD.Print(this.Name);
             GetParent().RemoveChild(this);
             return;
         }
@@ -109,13 +136,14 @@ public partial class Upgrader : Control
         an[0] = false;
         an[1] = true;
         for(int i = 0; i < 4; i++){
+            int capture = i;
             Button alala = GD.Load<PackedScene>("res://player/card.tscn").Instantiate<Button>();
             alala.Text = blocks[type,i];
             alala.Position = new Vector2(160, -320 + 200* i);
             upgrade1.AddChild(alala);
             alala.Pressed += () =>
             {
-                if (GetParent().GetParent() is Main m) m.upgrades[type, 0] = i;
+                if (GetParent() is Main m) m.upgrades[type-1, 0] = capture;
             };
         }
     }
@@ -128,13 +156,17 @@ public partial class Upgrader : Control
         an[0] = true;
         an[1] = false;
         for(int i = 4; i < 8; i++){
+            int capture = i;
             Button alala = GD.Load<PackedScene>("res://player/card.tscn").Instantiate<Button>();
             alala.Text = blocks[type,i];
             alala.Position = new Vector2(160, -320 + 200* (i-4));
             upgrade2.AddChild(alala);
             alala.Pressed += () =>
             {
-                if (GetParent().GetParent() is Main m) m.upgrades[type, 1] = i;
+                if (GetParent() is Main m)
+                {
+                    m.upgrades[type - 1, 1] = capture;
+                }
             };
         }
     }

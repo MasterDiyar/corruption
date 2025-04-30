@@ -12,6 +12,7 @@ public partial class Zhukov : CharacterBody2D
     public bool enter = false;
     public Camera2D camera;
     Area2D taker;
+    private Attack taka;
     public override void _Ready()
     {
         camera = GetNode<Camera2D>("Camera2D");
@@ -21,6 +22,7 @@ public partial class Zhukov : CharacterBody2D
         icon = (AnimatedSprite2D)GetNode("Icon");
         icon.Play("idle");
         arch = GetNode<Sprite2D>("Arch");
+        taka = attac as Attack;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -44,6 +46,10 @@ public partial class Zhukov : CharacterBody2D
         {
             var tvar = GD.Load<PackedScene>("res://player/upgrader.tscn").Instantiate<Control>();
             tvar.Position = Position;
+            if (tvar is Upgrader re)
+            {
+                re.type = taka.inventory[taka.currentInv];
+            }
             GetParent().AddChild(tvar);
             camera.Enabled =false;
             ProcessMode = ProcessModeEnum.Disabled;
@@ -56,7 +62,6 @@ public partial class Zhukov : CharacterBody2D
                 if (attac is Attack arc){
                     arc.totalAmmo += random.Next(minammo, maxammo);
                 }
-                GD.Print("taker");
                 a.QueueFree();
                 
             break;

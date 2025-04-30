@@ -101,37 +101,37 @@ texture = ExtResource("6_cp6tm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 2726.0
-offset_top = -1762.0
-offset_right = 5359.0
-offset_bottom = -12.0001
+offset_left = 2922.0
+offset_top = -2196.0
+offset_right = 5944.0
+offset_bottom = -446.0
 rotation = 0.785398
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 1349.0
-offset_top = 1701.0
-offset_right = 3269.0
-offset_bottom = 3598.0
+offset_left = 1395.0
+offset_top = 1656.0
+offset_right = 3472.0
+offset_bottom = 3553.0
 rotation = -0.785398
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -1957.0
-offset_top = -697.0
-offset_right = 412.0
-offset_bottom = 1168.0
+offset_left = -3518.0
+offset_top = -495.0
+offset_right = 97.0
+offset_bottom = 2331.0
 rotation = -0.785398
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -610.0
-offset_top = 608.0
-offset_right = 2348.0
-offset_bottom = 2524.0
+offset_left = -1505.0
+offset_top = -440.0
+offset_right = 3421.0
+offset_bottom = 2873.0
 rotation = 0.785398
 color = Color(0, 0, 0, 1)
 

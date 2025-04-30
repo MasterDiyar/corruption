@@ -9,12 +9,12 @@ public partial class Attack : Node
 	public int currentClip;
 	public bool isReloading = false;
      
-	public int[] inventory = { 4, 2, 5 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
+	public int[] inventory = { 1, 2, 5 }, bulletSpeed = {3600, 3000, 0, 5000, 3200}, dispersion = [5, 45, 20];
     public float[] damages = {3, 3, 4.5f, 10, 2.5f};
-    public int tbf = 1;
+    public int[] tbf = {1, 1, 1, 1};
     public bool obrez = false;
     
-    public float dispersion = 45, angle = 0.15f;
+    public float  angle = 0.15f;
     public float kniferadius = 70;
 	public int currentInv = 0;
     private double lastShotTime = 0;
@@ -22,7 +22,7 @@ public partial class Attack : Node
     public float rifleCooldown = 0.8f;
     public float pistolCooldown = 0.3f;
     public float defaultCooldown = 0.25f;
-
+    public int[] Unbreaking = [100, 50, 90];
     
 	[Export]CharacterBody2D player;
     Timer reloadTimer, shootTimer;
@@ -54,7 +54,7 @@ public partial class Attack : Node
             switch (inventory[currentInv])
             {
                 case 1:attack(); break;
-                case 2:shotgunAttack();break;
+                case 2:shotgunAttack(dullcount, angle);break;
                 case 3:knifeAttack();break;
                 case 4:rifleAttack();break;
                 case 5:pistolAttack();break;
@@ -87,13 +87,12 @@ public partial class Attack : Node
                 var sharp = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
                 sharp.Position = player.Position + 50 * new Vector2(Mathf.Cos(sharp.Rotation), Mathf.Sin(sharp.Rotation));
                 sharp.Rotation = sharp.GetAngleTo(player.GetGlobalMousePosition()) + i * angle -
-                                 bullet_count / 2f * angle + ((random.NextSingle() >0.5f) ? -1 : 1)
-                                 * random.Next((int)dispersion)/45f;
+                                 bullet_count / 2f * angle + random.Next(-dispersion[1], dispersion[1])/90f;
                 if (sharp is svinets a)
                 {
                     a.Speed = bulletSpeed[1];
                     a.damage = damages[1];
-                    a.timesbefore = tbf;
+                    a.timesbefore = tbf[1];
                 }
 
                 GetParent().GetParent().AddChild(sharp);
@@ -123,7 +122,7 @@ public partial class Attack : Node
 
         if (currentClip > 0)
         {
-            currentClip--;
+            currentClip-= (random.Next(100) < Unbreaking[1]) ? 1: 0;
             var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
             bullet.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
             bullet.Position = player.Position + 50 * new Vector2(Mathf.Cos(bullet.Rotation), Mathf.Sin(bullet.Rotation));
@@ -132,7 +131,7 @@ public partial class Attack : Node
             {
                 svin.Speed = bulletSpeed[4];
                 svin.damage = damages[4];
-                svin.timesbefore = tbf;
+                svin.timesbefore = tbf[3];
             }
 
             GetParent().GetParent().AddChild(bullet);
@@ -149,7 +148,7 @@ public partial class Attack : Node
 
         if (currentClip > 0)
         {
-            currentClip--;
+            currentClip-= (random.Next(100) < Unbreaking[2]) ? 1: 0;
             var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate<Area2D>();
 
             bullet.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
@@ -159,7 +158,7 @@ public partial class Attack : Node
             {
                 svin.Speed = bulletSpeed[3];
                 svin.damage = damages[3];
-                svin.timesbefore = tbf;
+                svin.timesbefore = tbf[2];
             }
 
             GetParent().GetParent().AddChild(bullet);
@@ -177,15 +176,15 @@ public partial class Attack : Node
     
             if (currentClip > 0)
             {
-                currentClip--;
+                currentClip-= (random.Next(100) < Unbreaking[0]) ? 1: 0;
                 var bullet = GD.Load<PackedScene>("res://player/svinets.tscn").Instantiate() as Node2D;
-                bullet.Rotation = player.GetAngleTo(player.GetGlobalMousePosition());
+                bullet.Rotation = player.GetAngleTo(player.GetGlobalMousePosition()) + random.Next(-dispersion[0], dispersion[0])/20f;
                 bullet.Position = player.Position + 50 * new Vector2(Mathf.Cos(bullet.Rotation), Mathf.Sin(bullet.Rotation));
     
                 if (bullet is svinets svin){
                     svin.Speed = bulletSpeed[0];
                     svin.damage = damages[0];
-                    svin.timesbefore = tbf;
+                    svin.timesbefore = tbf[0];
                 }
                 GetParent().GetParent().AddChild(bullet);
             }

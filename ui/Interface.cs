@@ -47,7 +47,8 @@ public partial class Interface : Control
 
     			case 2:
         			knife.Visible = false;
-        			item.Texture = GD.Load<Texture2D>("res://enemy/shotgun.png");
+			        
+        			item.Texture = (a.obrez) ?GD.Load<Texture2D>("res://enemy/obrez.png") :GD.Load<Texture2D>("res://enemy/shotgun.png");
         			holditem.Texture = item.Texture;
         			holditem.Visible = true;
         			break;

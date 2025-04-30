@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp6kxjkqm4ono"]
+[gd_scene load_steps=15 format=3 uid="uid://dp6kxjkqm4ono"]
 
 [ext_resource type="Script" uid="uid://dyk2fb7by34i" path="res://enemy/Infant.cs" id="1_7lluf"]
 [ext_resource type="Texture2D" uid="uid://blveu18vudt4n" path="res://enemy/german/grayman (4)1.png" id="1_ufroo"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bekhbh4ur4a88" path="res://enemy/german/grayman (4)8.png" id="7_2o11i"]
 [ext_resource type="PackedScene" uid="uid://dq00ilrluitk7" path="res://enemy/property.tscn" id="8_cwoek"]
 [ext_resource type="PackedScene" uid="uid://c4tudf0jhp2ld" path="res://enemy/indicator.tscn" id="9_7lluf"]
+[ext_resource type="PackedScene" uid="uid://kds44ns35d1o" path="res://rounder.tscn" id="11_td1gm"]
+[ext_resource type="Texture2D" uid="uid://f3ij3y85v1hb" path="res://enemy/german/eblota.png" id="12_qgufl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7lluf"]
 radius = 50.5594
@@ -62,13 +64,21 @@ shape = SubResource("CircleShape2D_7lluf")
 
 [node name="Icon" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_xvvi5")
 animation = &"idle"
 frame_progress = 0.315445
 
-[node name="property" parent="." instance=ExtResource("8_cwoek")]
+[node name="property" parent="." groups=["enemies"] instance=ExtResource("8_cwoek")]
 hp = 30.0
 damage = 2.0
 
 [node name="indicator" parent="." instance=ExtResource("9_7lluf")]
+
+[node name="rounder" parent="." node_paths=PackedStringArray("root") instance=ExtResource("11_td1gm")]
+size = Vector2(3, 3)
+pl1 = ExtResource("12_qgufl")
+pl2 = ExtResource("12_qgufl")
+m1 = Color(1, 0, 0, 0.462745)
+m2 = Color(0, 0, 1, 0.458824)
+root = NodePath("..")
