@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://l04ovfo3q5o1"]
+
+[ext_resource type="Script" uid="uid://6kyik231r55e" path="res://player/Upgradeflip.cs" id="1_m26qk"]
+
+[node name="grader" type="Node"]
+script = ExtResource("1_m26qk")
