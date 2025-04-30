@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://celmuqsu687fo"]
+
+[ext_resource type="Texture2D" uid="uid://wlnjqmvl6fsu" path="res://enemy/prizrak.png" id="1_dwdqi"]
+[ext_resource type="Script" uid="uid://8jhkjevdnuwe" path="res://enemy/shade.cs" id="2_6alen"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture_filter = 3
+texture = ExtResource("1_dwdqi")
+script = ExtResource("2_6alen")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

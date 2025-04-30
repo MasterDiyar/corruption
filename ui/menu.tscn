@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cluvddvs82a1o"]
+[gd_scene load_steps=14 format=3 uid="uid://cluvddvs82a1o"]
 
 [ext_resource type="FontFile" uid="uid://cwcsuan3qs8ii" path="res://ui/PixeloidMono.otf" id="1_bwjgb"]
 [ext_resource type="Script" uid="uid://eqey4cl7jgv1" path="res://ui/Menu.cs" id="1_udkah"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dx7wbekw0kvdi" path="res://player/zhukov/zhukov2.png" id="8_7toyc"]
 [ext_resource type="Texture2D" uid="uid://bdj4jw0nh0055" path="res://player/zhukov/zhukov3.png" id="9_ybgh7"]
 [ext_resource type="Texture2D" uid="uid://c4i6javai8qb8" path="res://player/zhukov/zhukov4.png" id="10_k3j3x"]
+[ext_resource type="Texture2D" uid="uid://dg6ppmqhbu3n1" path="res://ui/menub.png" id="12_oumb1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2fd1n"]
 animations = [{
@@ -61,30 +62,13 @@ texture = ExtResource("2_jbsda")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 175.0
-offset_top = 47.0
-offset_right = 1018.0
-offset_bottom = 220.0
+offset_left = 7.0
+offset_top = 964.0
+offset_right = 850.0
+offset_bottom = 1137.0
 theme_override_fonts/font = ExtResource("1_bwjgb")
 theme_override_font_sizes/font_size = 96
 text = "Title name"
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 216.0
-offset_right = 255.0
-offset_bottom = 310.0
-text = "Play"
-
-[node name="Button2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 333.0
-offset_right = 251.0
-offset_bottom = 425.0
-text = "Quit
-"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
@@ -93,6 +77,26 @@ scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_2fd1n")
 animation = &"idle"
 frame_progress = 0.738033
+
+[node name="Menub" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(183, 800)
+scale = Vector2(3.64062, 3.17708)
+texture = ExtResource("12_oumb1")
+
+[node name="Button2" type="Button" parent="Menub"]
+offset_left = -36.0
+offset_top = 2.0
+offset_right = 34.0
+offset_bottom = 33.0
+flat = true
+
+[node name="Button" type="Button" parent="Menub"]
+offset_left = -37.0
+offset_top = -33.0
+offset_right = 34.0
+offset_bottom = -2.0
+flat = true
 
 [node name="Pokrivalo" type="Sprite2D" parent="."]
 position = Vector2(1378, 846)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dp6kxjkqm4ono"]
+[gd_scene load_steps=24 format=3 uid="uid://dp6kxjkqm4ono"]
 
 [ext_resource type="Script" uid="uid://dyk2fb7by34i" path="res://enemy/Infant.cs" id="1_7lluf"]
 [ext_resource type="Texture2D" uid="uid://blveu18vudt4n" path="res://enemy/german/grayman (4)1.png" id="1_ufroo"]
@@ -8,10 +8,19 @@
 [ext_resource type="Texture2D" uid="uid://cp08nt0s1rpvh" path="res://enemy/german/grayman (4)5.png" id="5_td1gm"]
 [ext_resource type="Texture2D" uid="uid://pi1p4uhjm3yk" path="res://enemy/german/grayman (4)7.png" id="6_qgufl"]
 [ext_resource type="Texture2D" uid="uid://bekhbh4ur4a88" path="res://enemy/german/grayman (4)8.png" id="7_2o11i"]
+[ext_resource type="Texture2D" uid="uid://8hniyv7jl3bf" path="res://enemy/eyeman/eyeman1.png" id="7_dk3ab"]
+[ext_resource type="Texture2D" uid="uid://cwx4jra6iki04" path="res://enemy/eyeman/eyeman2.png" id="8_2e6a6"]
 [ext_resource type="PackedScene" uid="uid://dq00ilrluitk7" path="res://enemy/property.tscn" id="8_cwoek"]
 [ext_resource type="PackedScene" uid="uid://c4tudf0jhp2ld" path="res://enemy/indicator.tscn" id="9_7lluf"]
+[ext_resource type="Texture2D" uid="uid://cf1o81ln1exrn" path="res://enemy/eyeman/eyeman3.png" id="9_ip52n"]
+[ext_resource type="Texture2D" uid="uid://r3f61oo48iio" path="res://enemy/eyeman/eyeman4.png" id="10_exnu5"]
+[ext_resource type="Texture2D" uid="uid://dsaxmryksg18o" path="res://enemy/eyeman/eyeman5.png" id="11_ieyj4"]
 [ext_resource type="PackedScene" uid="uid://kds44ns35d1o" path="res://rounder.tscn" id="11_td1gm"]
+[ext_resource type="Texture2D" uid="uid://82g5tap1e680" path="res://enemy/eyeman/eyeman6.png" id="12_5rhp8"]
 [ext_resource type="Texture2D" uid="uid://f3ij3y85v1hb" path="res://enemy/german/eblota.png" id="12_qgufl"]
+[ext_resource type="Texture2D" uid="uid://c6cy6a7oq7ks2" path="res://enemy/eyeman/eyeman7.png" id="15_iwlj2"]
+[ext_resource type="Texture2D" uid="uid://dn6rkoecqwfjx" path="res://enemy/eyeman/eyeman9.png" id="16_yi01o"]
+[ext_resource type="Texture2D" uid="uid://clihufo3dw2ko" path="res://enemy/eyeman/eyeman10.png" id="17_h666t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7lluf"]
 radius = 50.5594
@@ -40,6 +49,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_dk3ab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2e6a6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ip52n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_exnu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ieyj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5rhp8")
+}],
+"loop": true,
+"name": &"idleeye",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idleskel",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("5_td1gm")
 }, {
 "duration": 1.0,
@@ -51,9 +88,29 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_iwlj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_yi01o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_h666t")
+}],
+"loop": true,
+"name": &"runeye",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"runskel",
+"speed": 5.0
 }]
 
 [node name="RigidBody2D" type="RigidBody2D" groups=["enemies"]]
+visibility_layer = 3
 gravity_scale = 0.0
 script = ExtResource("1_7lluf")
 metadata/ready = false
@@ -67,10 +124,8 @@ texture_filter = 3
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_xvvi5")
 animation = &"idle"
-frame_progress = 0.315445
 
 [node name="property" parent="." groups=["enemies"] instance=ExtResource("8_cwoek")]
-hp = 30.0
 damage = 2.0
 
 [node name="indicator" parent="." instance=ExtResource("9_7lluf")]

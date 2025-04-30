@@ -20,8 +20,8 @@ public partial class Menu : Control
 		r3 = GetNode<ColorRect>("ColorRect3");
 		r4 = GetNode<ColorRect>("ColorRect4");
 		pl = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		playButton = GetNode<Button>("Button");
-		quitButton = GetNode<Button>("Button2");
+		playButton = GetNode<Button>("Menub/Button");
+		quitButton = GetNode<Button>("Menub/Button2");
 		playButton.Pressed += strt;
 		quitButton.Pressed += (() => { GetTree().Quit(); });
 		timer.Timeout += readr;
@@ -71,16 +71,9 @@ public partial class Menu : Control
 			timer.WaitTime = 0.2f;
 		}else if (times == -1)
 		{
-					Node player = GD.Load<PackedScene>("res://player/zhukov.tscn").Instantiate();
-					if (player is Zhukov a) {
-						a.Position = new Vector2(1370, 0);
-						if (a.GetNode("attack") is Attack b)
-						{
-							if (GetParent() is Main c) c.inventory = b.inventory;
-						}}
 					
          			GetParent().AddChild(GD.Load<PackedScene>("res://map/firstmap.tscn").Instantiate());
-         			GetParent().AddChild(player);
+	
          			QueueFree();
          		}
 		else times --;

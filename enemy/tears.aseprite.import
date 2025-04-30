@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://hbsvld2modtg"
+path="res://.godot/imported/tears.aseprite-7ce0f2542ffd23f4b20a762ab3faef34.res"
+
+[deps]
+
+source_file="res://enemy/tears.aseprite"
+dest_files=["res://.godot/imported/tears.aseprite-7ce0f2542ffd23f4b20a762ab3faef34.res"]
+
+[params]
+

@@ -5,11 +5,11 @@ public partial class Attack : Node
 {
 	public int clipSize = 30;
     public int totalAmmo = 90, dullcount = 4;
-	public float hp = 10;
+	public float hp = 80;
 	public int currentClip;
 	public bool isReloading = false;
      
-	public int[] inventory = { 1, 2, 5 }, bulletSpeed = {3600, 3000, 0, 5000, 3200}, dispersion = [5, 45, 20];
+	public int[] inventory = { 3, 5, 2 }, bulletSpeed = {3600, 3000, 0, 5000, 3200}, dispersion = [5, 45, 20];
     public float[] damages = {3, 3, 4.5f, 10, 2.5f};
     public int[] tbf = {1, 1, 1, 1};
     public bool obrez = false;

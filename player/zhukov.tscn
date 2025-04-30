@@ -153,6 +153,12 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_32xco")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -2700
+limit_top = -700
+limit_right = 2500
+limit_bottom = 2300
+limit_smoothed = true
+editor_draw_limits = true
 
 [node name="Interface" parent="." instance=ExtResource("4_poocl")]
 offset_left = -960.0

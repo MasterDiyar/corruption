@@ -29,8 +29,6 @@ public partial class svinets : Area2D
 
     private void _OnEnter(Node area)
     {
-        
-        
         if (area.IsInGroup(team) && area.HasNode("property"))
         {
             timesbefore--;
@@ -51,7 +49,5 @@ public partial class svinets : Area2D
             
             if (timesbefore <= 0)QueueFree();
         }
-
-        
     }
 }

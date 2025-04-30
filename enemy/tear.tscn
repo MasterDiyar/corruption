@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://tq7w1ghvjyxm"]
+
+[ext_resource type="Script" uid="uid://bfnpap6w635nb" path="res://enemy/Tear.cs" id="1_1i1lh"]
+[ext_resource type="Texture2D" uid="uid://dacde1vbpcpxw" path="res://enemy/tears.png" id="2_hqvim"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eykaa"]
+
+[node name="tear" type="Area2D"]
+script = ExtResource("1_1i1lh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eykaa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 3
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("2_hqvim")

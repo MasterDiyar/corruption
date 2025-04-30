@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://maxwvmqbjko0"]
+
+[ext_resource type="Texture2D" uid="uid://j6lc0siweabd" path="res://ui/panel.png" id="1_o4xx5"]
+[ext_resource type="Script" uid="uid://bfxha7sok88qb" path="res://ui/Textpanel.cs" id="2_31rq4"]
+[ext_resource type="FontFile" uid="uid://ynk4qg08royc" path="res://ui/PixeloidSans-Bold.otf" id="3_31rq4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iqqid"]
+font = ExtResource("3_31rq4")
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_31rq4"]
+font = ExtResource("3_31rq4")
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+
+[node name="Textpanel" type="TextureRect" node_paths=PackedStringArray("TextLabel", "WhosaidLabel")]
+texture_filter = 3
+offset_left = -960.0
+offset_top = -347.0
+offset_right = 960.0
+offset_bottom = 733.0
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(960, 540)
+texture = ExtResource("1_o4xx5")
+script = ExtResource("2_31rq4")
+TextLabel = NodePath("Label")
+WhosaidLabel = NodePath("who")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 3
+layout_mode = 0
+offset_left = 62.0
+offset_top = 555.0
+offset_right = 1673.0
+offset_bottom = 869.0
+label_settings = SubResource("LabelSettings_iqqid")
+
+[node name="who" type="Label" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 507.0
+offset_right = 166.0
+offset_bottom = 547.0
+text = "Zhukov
+"
+label_settings = SubResource("LabelSettings_31rq4")

@@ -1,26 +1,67 @@
-[gd_scene load_steps=6 format=3 uid="uid://b87kx663qllr2"]
+[gd_scene load_steps=13 format=3 uid="uid://b87kx663qllr2"]
 
 [ext_resource type="Script" uid="uid://b35wbsm518q4h" path="res://enemy/TestSlime.cs" id="1_wjk85"]
-[ext_resource type="Texture2D" uid="uid://haqr0hot1luo" path="res://enemy/slizen.jpg" id="1_xlr6v"]
 [ext_resource type="PackedScene" uid="uid://c4tudf0jhp2ld" path="res://enemy/indicator.tscn" id="2_qyg8k"]
 [ext_resource type="PackedScene" uid="uid://dq00ilrluitk7" path="res://enemy/property.tscn" id="3_qyg8k"]
+[ext_resource type="Texture2D" uid="uid://dsvsemlgshyxy" path="res://enemy/crank/crank1.png" id="4_ulflb"]
+[ext_resource type="Texture2D" uid="uid://cf04ax5y4e5rb" path="res://enemy/crank/crank2.png" id="5_2hrtc"]
+[ext_resource type="Texture2D" uid="uid://ruxws87y3auc" path="res://enemy/crank/crank3.png" id="6_qvaiq"]
+[ext_resource type="Texture2D" uid="uid://h3tnvcej1lps" path="res://enemy/crank/crank4.png" id="7_g2hwc"]
+[ext_resource type="Texture2D" uid="uid://b71dgemscbih7" path="res://enemy/crank/crank5.png" id="8_12k18"]
+[ext_resource type="Texture2D" uid="uid://dk47lpefp5khh" path="res://enemy/crank/crank6.png" id="9_t7l6d"]
+[ext_resource type="Texture2D" uid="uid://bdbi2sbyrqvbq" path="res://enemy/crank/crank7.png" id="10_aqv7q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjk85"]
-radius = 97.88
+radius = 44.9222
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adlig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ulflb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2hrtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qvaiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g2hwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_12k18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_t7l6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_aqv7q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [node name="TestSlime" type="RigidBody2D" groups=["enemies"]]
 gravity_scale = 0.0
 script = ExtResource("1_wjk85")
 metadata/ready = false
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture_filter = 3
-position = Vector2(-2, -4)
-texture = ExtResource("1_xlr6v")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_wjk85")
 
 [node name="indicator" parent="." instance=ExtResource("2_qyg8k")]
 
 [node name="property" parent="." instance=ExtResource("3_qyg8k")]
+
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_adlig")
+frame_progress = 0.256122
+speed_scale = 2.0
+offset = Vector2(0, -8)
+
+[node name="Timer" type="Timer" parent="."]

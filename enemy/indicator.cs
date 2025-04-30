@@ -15,10 +15,9 @@ public partial class indicator : Node
 		if (property is property a) maxhp = a.hp;
 		hp = maxhp;
 		AnimatedSprite2D icor = root.GetNode<AnimatedSprite2D>("Icon");
-		Sprite2D icon = new Sprite2D();
-		icon.Texture = icor.SpriteFrames.GetFrameTexture(icor.Animation, 0);
-		textureHeight = icon.Texture.GetHeight();
-		textureWidth = icon.Texture.GetWidth() * icor.Scale.X;
+		var rexture = icor.SpriteFrames.GetFrameTexture(icor.Animation, 0);
+		textureHeight = rexture.GetHeight();
+		textureWidth = rexture.GetWidth() * icor.Scale.X;
 		hei = textureHeight / 2f + 30f;
 		line.Position = new Vector2(0, -hei);
 	}

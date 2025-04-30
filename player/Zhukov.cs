@@ -13,8 +13,11 @@ public partial class Zhukov : CharacterBody2D
     public Camera2D camera;
     Area2D taker;
     private Attack taka;
+    public bool dialogue = true;
+    private TextureRect inv;
     public override void _Ready()
     {
+        dash = GetNode("dash");
         camera = GetNode<Camera2D>("Camera2D");
         attac = GetNode("attack");
         taker = GetNode<Area2D>("takeitem");
@@ -23,11 +26,13 @@ public partial class Zhukov : CharacterBody2D
         icon.Play("idle");
         arch = GetNode<Sprite2D>("Arch");
         taka = attac as Attack;
+
+        inv = GetNode<TextureRect>("Interface/inv");
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionPressed("run"))
+        if (Input.IsActionPressed("run") && arch.Visible)
         {
             if(Input.IsActionJustPressed("left"))icon.Scale = 2.4f * new Vector2(-1, 1);
             else if(Input.IsActionJustPressed("right"))icon.Scale = 2.4f * Vector2.One;
@@ -45,7 +50,7 @@ public partial class Zhukov : CharacterBody2D
         if (enter && Input.IsActionJustPressed("interract"))
         {
             var tvar = GD.Load<PackedScene>("res://player/upgrader.tscn").Instantiate<Control>();
-            tvar.Position = Position;
+            tvar.Position = new Vector2(40000, 10000);
             if (tvar is Upgrader re)
             {
                 re.type = taka.inventory[taka.currentInv];
@@ -53,6 +58,24 @@ public partial class Zhukov : CharacterBody2D
             GetParent().AddChild(tvar);
             camera.Enabled =false;
             ProcessMode = ProcessModeEnum.Disabled;
+        }
+
+        if (dialogue)
+        {
+            arch.Visible = false;
+            inv.Visible = false;
+            icon.GetNode<Sprite2D>("weapon").Visible = false;
+            icon.GetNode<AnimatedSprite2D>("knife").Visible = false;
+            dash.ProcessMode = ProcessModeEnum.Disabled;
+            attac.ProcessMode = ProcessModeEnum.Disabled;
+        }
+        else {
+            arch.Visible = true;
+            inv.Visible = true;
+            icon.GetNode<Sprite2D>("weapon").Visible = true;
+            icon.GetNode<AnimatedSprite2D>("knife").Visible = true;
+            dash.ProcessMode = ProcessModeEnum.Inherit;
+            attac.ProcessMode = ProcessModeEnum.Inherit;
         }
     }
 
@@ -65,6 +88,9 @@ public partial class Zhukov : CharacterBody2D
                 a.QueueFree();
                 
             break;
+            case "heal":
+                
+                break;
             case "table":
                 enter = true;
                 break;

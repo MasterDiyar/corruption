@@ -14,7 +14,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_duwog")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -51.0
+offset_top = -508.0
+offset_right = 3788.0
+offset_bottom = 1948.0
+color = Color(0.538313, 0.327491, 0.172417, 1)
+
 [node name="blueprint" type="TextureRect" parent="."]
+texture_filter = 3
 layout_mode = 0
 offset_left = 140.0
 offset_top = 120.0
@@ -23,6 +32,7 @@ offset_bottom = 920.0
 texture = ExtResource("2_w04vr")
 
 [node name="weapon" type="TextureRect" parent="."]
+texture_filter = 3
 layout_mode = 0
 offset_left = 431.0
 offset_top = 281.0
