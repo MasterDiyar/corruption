@@ -3,4 +3,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="enemy\pistol.png" />
+    <Content Include="enemy\pistol.png.import" />
+    <Content Include="enemy\rifle.png" />
+    <Content Include="enemy\rifle.png.import" />
+  </ItemGroup>
 </Project>

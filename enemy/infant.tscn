@@ -68,7 +68,7 @@ animation = &"idle"
 frame_progress = 0.315445
 
 [node name="property" parent="." instance=ExtResource("8_cwoek")]
-hp = 40.0
+hp = 30.0
 damage = 2.0
 
 [node name="indicator" parent="." instance=ExtResource("9_7lluf")]

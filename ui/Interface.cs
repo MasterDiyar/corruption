@@ -29,7 +29,7 @@ public partial class Interface : Control
 	{
 		if (attack is Attack a)
 		{
-			info.Text = $"  x{Mathf.RoundToInt(a.hp)}\n   x{a.totalAmmo/a.clipSize}\n   x{a.currentClip} from {a.totalAmmo}";
+			info.Text = $"\n\n  x{Mathf.RoundToInt(a.hp)}\n   x{a.totalAmmo/a.clipSize}\n   x{a.currentClip} from {a.totalAmmo}";
 			switch (a.inventory[a.currentInv])
 			{
 				case 1:

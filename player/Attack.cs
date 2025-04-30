@@ -8,13 +8,16 @@ public partial class Attack : Node
 	public float hp = 10;
 	public int currentClip;
 	public bool isReloading = false;
+     
 	public int[] inventory = { 4, 2, 5 }, bulletSpeed = {3600, 3000, 0, 5000, 3200};
     public float[] damages = {3, 3, 4.5f, 10, 2.5f};
     public int tbf = 1;
     public bool obrez = false;
+    
     public float dispersion = 45, angle = 0.15f;
     public float kniferadius = 70;
 	public int currentInv = 0;
+    
 	[Export]CharacterBody2D player;
     Timer reloadTimer, shootTimer;
     Random random = new Random();

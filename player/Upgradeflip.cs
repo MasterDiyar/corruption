@@ -11,13 +11,15 @@ public partial class Upgradeflip : Node
 
     public override void _Ready()
     {
+        GD.Print("Upgradeflip ready");
+        player = GetNode<CharacterBody2D>("Zhukov");
         main = GetParent().GetParent();
         if (main is Main gay){
             upgrades = CTJ(gay.upgrades);
             weapons = gay.inventory;
         }
         
-            for(int i = 0 ; i < 4; i++ ){
+            for(int i = 0 ; i < 3; i++ ){
                 switch (weapons[i]){
                     case 1:
                     ak47(upgrades[i]);

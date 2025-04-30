@@ -73,7 +73,7 @@ public partial class Upgrader : Control
         {
             
             GetParent().GetNode<CharacterBody2D>("Zhukov").AddChild(
-                GD.Load<PackedScene>("res://player/upgrader.tscn").Instantiate()
+                GD.Load<PackedScene>("res://player/grader.tscn").Instantiate()
                 );
             if (GetParent().GetNode("Zhukov") is Zhukov zhukov)
             {
@@ -82,8 +82,7 @@ public partial class Upgrader : Control
             }
             GD.Print(this.Name);
             GetParent().RemoveChild(this);
-            
-            
+            return;
         }
         
         
