@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bdbi2sbyrqvbq" path="res://enemy/crank/crank7.png" id="10_aqv7q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjk85"]
-radius = 44.9222
+radius = 25.02
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_adlig"]
 animations = [{
@@ -39,11 +39,12 @@ animations = [{
 "texture": ExtResource("10_aqv7q")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 7.0
 }]
 
 [node name="TestSlime" type="RigidBody2D" groups=["enemies"]]
+light_mask = 5
 gravity_scale = 0.0
 script = ExtResource("1_wjk85")
 metadata/ready = false
@@ -58,9 +59,9 @@ shape = SubResource("CircleShape2D_wjk85")
 
 [node name="Icon" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-scale = Vector2(5, 5)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_adlig")
-frame_progress = 0.256122
+animation = &"idle"
 speed_scale = 2.0
 offset = Vector2(0, -8)
 

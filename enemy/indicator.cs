@@ -6,6 +6,7 @@ public partial class indicator : Node
 	private Node root, property;
 	private float maxhp, hp, hei, textureHeight, textureWidth;
 	Line2D line;
+	private string typ;
 	
 	public override void _Ready()
 	{
@@ -14,7 +15,9 @@ public partial class indicator : Node
 		property = root.GetNode("property");
 		if (property is property a) maxhp = a.hp;
 		hp = maxhp;
+		if (root is Infant als) typ = als.typ;
 		AnimatedSprite2D icor = root.GetNode<AnimatedSprite2D>("Icon");
+		icor.Play("idle"+typ);
 		var rexture = icor.SpriteFrames.GetFrameTexture(icor.Animation, 0);
 		textureHeight = rexture.GetHeight();
 		textureWidth = rexture.GetWidth() * icor.Scale.X;

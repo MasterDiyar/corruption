@@ -5,12 +5,12 @@ public partial class Attack : Node
 {
 	public int clipSize = 30;
     public int totalAmmo = 90, dullcount = 4;
-	public float hp = 80;
+	public float hp = 8000;
 	public int currentClip;
 	public bool isReloading = false;
      
 	public int[] inventory = { 3, 5, 2 }, bulletSpeed = {3600, 3000, 0, 5000, 3200}, dispersion = [5, 45, 20];
-    public float[] damages = {3, 3, 4.5f, 10, 2.5f};
+    public float[] damages = {3, 4, 49.5f, 10, 2.5f};
     public int[] tbf = {1, 1, 1, 1};
     public bool obrez = false;
     
@@ -24,6 +24,7 @@ public partial class Attack : Node
     public float defaultCooldown = 0.25f;
     public int[] Unbreaking = [100, 50, 90];
     
+    public bool dead = false;
 	[Export]CharacterBody2D player;
     Timer reloadTimer, shootTimer;
     Random random = new Random();
@@ -71,6 +72,33 @@ public partial class Attack : Node
         {
             currentInv += (currentInv == 2) ? -2 : 1;
         }
+
+        if (hp <= 0 && dead)
+        {
+            foreach (var nodes in GetParent().GetParent().GetChildren())
+            {
+                 nodes.QueueFree();
+            }
+            GetParent().GetParent().AddChild(GD.Load<PackedScene>("res://ui/Menu.tscn").Instantiate());
+            
+        }
+        
+        if (hp <= 0 && !dead )
+        {
+            dead = true;
+            foreach (var nodes in GetParent().GetParent().GetChildren())
+            {
+                if (nodes.IsInGroup("enemies")) nodes.QueueFree();
+            }
+
+            GetParent().GetParent().GetChild(0).GetNode<Timer>("Timer").Stop();
+            hp = 120;
+            var death = GD.Load<PackedScene>("res://enemy/death.tscn").Instantiate<RigidBody2D>();
+            death.Position = player.GlobalPosition + new Vector2(150, 0);
+            if (death is Death deathg) deathg.hp = 900;
+            GetParent().GetParent().AddChild(death);
+        }
+        
 	}
 
     public void shotgunAttack(int bullet_count = 4, float angle = 0.15f)

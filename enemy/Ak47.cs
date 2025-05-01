@@ -3,7 +3,8 @@ using System;
 
 public partial class Ak47 : Sprite2D
 {
-	private Node2D player, mob;
+	private Node2D  mob;
+	private CharacterBody2D player;
 	private Node root;
 	Timer timer;
 	private int strelnul = 0;
@@ -11,7 +12,15 @@ public partial class Ak47 : Sprite2D
 	{
 		mob = GetParent<Node2D>();
 		root = mob.GetParent<Node>();
-		player = root.GetNode<Node2D>("Zhukov");
+		player = root.GetNode<CharacterBody2D>("Zhukov");
+		if (player == null)
+			foreach (var b in root.GetChildren())
+			{
+				if (b is CharacterBody2D)
+				{
+					player = b as CharacterBody2D;
+				}
+			}
 		timer = GetNode<Timer>("Timer");
 		LookAt(player.Position);
 		timer.Timeout += _attack;

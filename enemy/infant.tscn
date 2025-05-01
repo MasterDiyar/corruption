@@ -123,7 +123,8 @@ shape = SubResource("CircleShape2D_7lluf")
 texture_filter = 3
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_xvvi5")
-animation = &"idle"
+animation = &"idleeye"
+frame_progress = 0.318461
 
 [node name="property" parent="." groups=["enemies"] instance=ExtResource("8_cwoek")]
 damage = 2.0

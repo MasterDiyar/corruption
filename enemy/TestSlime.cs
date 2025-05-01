@@ -9,8 +9,10 @@ public partial class TestSlime : RigidBody2D
 	public int diff = 400, aluis = 1200;
 	[Export] public float speed = 100f;
 	private bool read = false;
+	
 	public override void _Ready()
 	{
+		GetNode<AnimatedSprite2D>("Icon").Play();
 		timer = GetNode<Timer>("Timer");
 		timer.Timeout += cout;
 		root = GetParent();

@@ -8,6 +8,7 @@ public partial class dash : Node
 	private int Speed = 400;
 	private int RunSpeed = 600;
 	public int currentSpeed;
+	[Export] private Camera2D camera;
 	
 	private bool isDashing = false;
 	private float dashSpeed = 1200f;
@@ -41,13 +42,13 @@ public partial class dash : Node
 	public void walk(double delta){
 		Vector2 velocity = Vector2.Zero;
 
-		if (Input.IsActionPressed("right"))
+		if (Input.IsActionPressed("right") && player.Position.X + 960 <= camera.LimitRight)
 			velocity.X += 1;
-		if (Input.IsActionPressed("left"))
+		if (Input.IsActionPressed("left")  && player.Position.X - 960 >= camera.LimitLeft)
 			velocity.X -= 1;
-		if (Input.IsActionPressed("down"))
+		if (Input.IsActionPressed("down")  && player.Position.Y + 540 <= camera.LimitBottom)
 			velocity.Y += 1;
-		if (Input.IsActionPressed("up"))
+		if (Input.IsActionPressed("up")  && player.Position.Y - 540 >= camera.LimitTop)
 			velocity.Y -= 1;
 		if (player.GetNode("attack") is Attack a){
 			if (!a.isReloading && Input.IsActionPressed("running"))

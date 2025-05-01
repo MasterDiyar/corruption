@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cluvddvs82a1o"]
+[gd_scene load_steps=15 format=3 uid="uid://cluvddvs82a1o"]
 
 [ext_resource type="FontFile" uid="uid://cwcsuan3qs8ii" path="res://ui/PixeloidMono.otf" id="1_bwjgb"]
 [ext_resource type="Script" uid="uid://eqey4cl7jgv1" path="res://ui/Menu.cs" id="1_udkah"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bdj4jw0nh0055" path="res://player/zhukov/zhukov3.png" id="9_ybgh7"]
 [ext_resource type="Texture2D" uid="uid://c4i6javai8qb8" path="res://player/zhukov/zhukov4.png" id="10_k3j3x"]
 [ext_resource type="Texture2D" uid="uid://dg6ppmqhbu3n1" path="res://ui/menub.png" id="12_oumb1"]
+[ext_resource type="AudioStream" uid="uid://brq6xr4ao6kqh" path="res://ui/fds.mp3" id="13_7toyc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2fd1n"]
 animations = [{
@@ -62,13 +63,15 @@ texture = ExtResource("2_jbsda")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 964.0
-offset_right = 850.0
-offset_bottom = 1137.0
+offset_left = 25.0
+offset_top = 28.0
+offset_right = 868.0
+offset_bottom = 267.0
 theme_override_fonts/font = ExtResource("1_bwjgb")
 theme_override_font_sizes/font_size = 96
-text = "Title name"
+text = "Return
+the
+Soul"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
@@ -80,7 +83,7 @@ frame_progress = 0.738033
 
 [node name="Menub" type="Sprite2D" parent="."]
 texture_filter = 3
-position = Vector2(183, 800)
+position = Vector2(183, 700)
 scale = Vector2(3.64062, 3.17708)
 texture = ExtResource("12_oumb1")
 
@@ -105,39 +108,45 @@ texture = ExtResource("6_cp6tm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 2922.0
-offset_top = -2196.0
-offset_right = 5944.0
-offset_bottom = -446.0
+offset_left = 2542.0
+offset_top = -2576.0
+offset_right = 6102.0
+offset_bottom = -826.0
 rotation = 0.785398
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 1395.0
-offset_top = 1656.0
-offset_right = 3472.0
-offset_bottom = 3553.0
+offset_left = 836.0
+offset_top = 2215.0
+offset_right = 3704.0
+offset_bottom = 4112.0
 rotation = -0.785398
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -3518.0
-offset_top = -495.0
-offset_right = 97.0
-offset_bottom = 2331.0
+offset_left = -5398.0
+offset_top = -585.0
+offset_right = -517.0
+offset_bottom = 3634.0
 rotation = -0.785398
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -1505.0
-offset_top = -440.0
-offset_right = 3421.0
-offset_bottom = 2873.0
+offset_left = -2759.0
+offset_top = -1694.0
+offset_right = 3940.0
+offset_bottom = 3507.0
 rotation = 0.785398
 color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_7toyc")
+volume_db = -14.911
+autoplay = true
+parameters/looping = true

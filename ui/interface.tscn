@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dq82qbynlctl1"]
+[gd_scene load_steps=29 format=3 uid="uid://dq82qbynlctl1"]
 
 [ext_resource type="Script" uid="uid://cv2fhylyvwcro" path="res://ui/Interface.cs" id="1_rfcoo"]
 [ext_resource type="Texture2D" uid="uid://d3rw2vul0rr40" path="res://ui/zrenje.png" id="2_jibaa"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dk5pwkoxh64g4" path="res://ui/icona3.png" id="5_jibaa"]
 [ext_resource type="Texture2D" uid="uid://bofhl14pgybn2" path="res://enemy/boot.png" id="6_7phn3"]
 [ext_resource type="Texture2D" uid="uid://0mjmwhf0gh1g" path="res://ui/icona2.png" id="6_cngsy"]
+[ext_resource type="Texture2D" uid="uid://dignddwpc2b88" path="res://ui/soul.png" id="7_cngsy"]
 [ext_resource type="Texture2D" uid="uid://dmctutqei3gfe" path="res://ui/icona4.png" id="7_l4t7i"]
 [ext_resource type="Texture2D" uid="uid://dmn067whkubvo" path="res://ui/icona5.png" id="8_62aum"]
 [ext_resource type="Texture2D" uid="uid://b8oh3phtoyhyx" path="res://ui/icona6.png" id="9_kljq8"]
@@ -194,9 +195,15 @@ texture = ExtResource("5_jibaa")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
+[node name="Soul" type="Sprite2D" parent="Gp"]
+texture_filter = 3
+position = Vector2(38, 240)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cngsy")
+
 [node name="boot" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-position = Vector2(58, 201)
+position = Vector2(54, 258)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_cngsy")
 frame_progress = 0.487731

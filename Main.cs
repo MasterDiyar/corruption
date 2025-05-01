@@ -6,7 +6,7 @@ public partial class Main : Node
     public int[] inventory = {1, 2, 3};
     public int[,] upgrades = {{0,0},{0,0},{0,0},{0,0},{0,0}};
     public float modifier = 1;
-    
+    public int soul = 0;
 
     public override void _Ready()
     {

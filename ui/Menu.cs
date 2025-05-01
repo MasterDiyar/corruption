@@ -73,7 +73,6 @@ public partial class Menu : Control
 		{
 					
          			GetParent().AddChild(GD.Load<PackedScene>("res://map/firstmap.tscn").Instantiate());
-	
          			QueueFree();
          		}
 		else times --;

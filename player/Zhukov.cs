@@ -89,10 +89,29 @@ public partial class Zhukov : CharacterBody2D
                 
             break;
             case "heal":
-                
+                if (attac is Attack al)al.hp += random.Next(minammo, maxammo);
+                a.QueueFree();
                 break;
             case "table":
                 enter = true;
+                break;
+            case "siege":
+                if (GetParent().GetChild(0).IsInGroup("map"))
+                {
+                    if (GetParent().GetChild(0) is Firstmap lox)
+                    {
+                        lox.sieger = true;
+                    }
+                }
+                break;
+            case "portal":
+                if (GetParent().GetChild(0).IsInGroup("map"))
+                {
+                    if (GetParent().GetChild(0) is Firstmap lox)
+                    {
+                        lox.portal = true;
+                    }
+                }
                 break;
         }
         

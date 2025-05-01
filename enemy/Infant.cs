@@ -7,10 +7,12 @@ public partial class Infant : RigidBody2D
 	public Node2D player;
 	public int diff = 400, aluis = 1200;
 	[Export] public float speed = 100f;
+	public string typ = "";
 	public override void _Ready()
 	{
 		root = GetParent();
 		player = root.GetNode<Node2D>("Zhukov");
+		if (player == null) player = root.GetNode<Node2D>("Zhukov2");
 	}
 
 	public override void _PhysicsProcess(double delta)

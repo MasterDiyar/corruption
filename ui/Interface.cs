@@ -29,7 +29,7 @@ public partial class Interface : Control
 	{
 		if (attack is Attack a)
 		{
-			info.Text = $"\n\n  x{Mathf.RoundToInt(a.hp)}\n   x{a.totalAmmo/a.clipSize}\n   x{a.currentClip} from {a.totalAmmo}";
+			if(root.GetParent() is Main das)info.Text = $"\n\n  x{Mathf.RoundToInt(a.hp)}\n   x{a.totalAmmo/a.clipSize}\n   x{a.currentClip} from {a.totalAmmo}\n   x{das.soul}";
 			switch (a.inventory[a.currentInv])
 			{
 				case 1:
@@ -87,7 +87,7 @@ public partial class Interface : Control
 			else
 			{
 				sprite.Stop();
-				sprite.Frame = 5;
+				sprite.Frame = 5;	
 			}
 		}
 	}
